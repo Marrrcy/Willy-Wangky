@@ -4,63 +4,59 @@
 # Program ini akan menyimpan perubahan-perubahan yang dilakukan ke file CSV
 
 # TODO
-# Definisi fungsi dan prosedur
 
 # KAMUS
 # PATH_TO_DB: string
-# save_csv, save : prosedur
+
+# Definisi prosedur dan fungsi
+''' procedure save(input User : array[1..CONST_VARS.N] of array[1..8] of strings
+    input Wahana : array[1..CONST_VARS.N] of array[1..5] of strings
+    input Pembelian : array[1..CONST_VARS.N] of array[1..4] of strings
+    input Penggunaan : array[1..CONST_VARS.N] of array[1..4] of strings
+    input Tiket :array[1..CONST_VARS.N] of array[1..3] of strings
+    input Refund : array[1..CONST_VARS.N] of array[1..4] of strings
+    input KritikSaran : array[1..CONST_VARS.N] of array[1..4] of strings
+    input TiketHilang : array[1..CONST_VARS.N] of array[1..4] of strings,)'''
+# procedure save(input NamaFile : string, input NewDB : array[1..CONST_VARS.N] of array[1..M] of strings)
 
 # ALGORTIMA utama
 # Menyiapkan library yang dibutuhkan
-import csv
-
-# PATH_TO_DB adalah sebuah variabel konstan untuk pathing ke direktori/folder Database
-PATH_TO_DB = "../Database/"
+import csv, CONST_VARS
 
 # Realisasi fungsi dan prosedur
-def save_csv(NamaFile,NewDB):
-    # KAMUS LOKAL
-    # NamaFile : String
-    # CsvFile : File CSV
-    # fieldnames : array of string
-    # CsvReader, CsvWriter : parsed csv file
-    # key : key for encrypting purposes
+# def save_csv(NamaFile,NewDB):
+#     # I.S.: NamaFile dan NewDB Terdefinisi
+#     # F.S.: NewDB tertuliskan ke NamaFile
+#     # KAMUS LOKAL
+#     # NamaFile : String
 
-    # ALGORITMA Prosedur
-    # mengubah nama file yang diinput menjadi huruf kecil semua
-    NamaFile = NamaFile.lower() 
-    # menambahkan pathing ke folder database
-    NamaFile = PATH_TO_DB + NamaFile 
+#     # NamaFile : SEQFILE of :
+#     #   (*) : CsvFile : array[1..M] strings
 
-    # Menambahkan tipe file jika lupa ditambahkan saat input
-    if not((".csv") in NamaFile): 
-        NamaFile += ".csv"
+#     # CsvWriter : array[1..N] of array[1..M] strings
 
-    # Bagian untuk mengambil header dari file csv (akan digunakan sebagai fieldnames)
-    # Mengoperasikan file
-    with open(NamaFile, 'r') as CsvFile:
-        # Membaca (parsing) file
-        CsvReader = csv.reader(CsvFile)
+#     # ALGORITMA Prosedur
+#     # menambahkan path ke folder database
+#     NamaFile = PATH_TO_DB + NamaFile 
 
-        # Menyimpan header ke fieldnames
-        fieldnames = next(CsvReader)
+#     # Menambahkan tipe file jika lupa ditambahkan saat input
+#     if not((".csv") in NamaFile): 
+#         NamaFile += ".csv"
 
-    # Melakukan perubahan pada file
-    with open (NamaFile, 'w') as CsvFile:
-        # Membaca file csv sebagai dictionary dengan fieldnames 'fieldnames' dan delimiter tanda koma (',')
-        CsvWriter = csv.DictWriter(CsvFile, fieldnames = fieldnames, delimiter = ',')
-        # Menuliskan header
-        CsvWriter.writeheader()
+#     # Melakukan perubahan pada file
+#     with open (NamaFile, 'w') as CsvFile:
+#         # Membaca file csv
+#         CsvWriter = csv.writer(CsvFile)
         
-        # Menuliskan info baru (dan lama) ke file database-nya (file yang lama akan ditimpa)
-        for line in NewDB:
-            CsvWriter.writerow(line)
+#         # Menuliskan info baru (dan lama) ke file database-nya (file yang lama akan ditimpa)
+#         for line in NewDB:
+#             CsvWriter.writerow(line)
 
 def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
-    # print(__name__)
+    # I.S.: User, Wahana, Pembelian, Penggunaan, Tiket, Refund, KritikSaran, TiketHilang terdefinisi
+    # F.S.: User, Wahana, Pembelian, Penggunaan, Tiket, Refund, KritikSaran, TiketHilang dituliskan ke file-file csv database
     # KAMUS LOKAL
     # FileKritikSaran, FilePembelian, FilePenggunaan, FilePenggunaan, FileRefund, FileTiket, FileTiketHilang, FileUser, FileWahana : string 
-    # User, Wahana, Pembelian, Penggunaan, Tiket, Refund, KritikSaran, TiketHilang : array of string dictionary
 
     # ALGORITMA Prosedur
     # Menerima nama file

@@ -18,8 +18,21 @@
 # ALGORITMA
 # load library
 import F01,F02,F03,F04,F05,F06,F12
-from os import system
-from time import sleep
+
+# # function panjangArray (arr : integer) --> integer
+# def panjangArray(arr):
+#     # KAMUS LOKAL
+#     # count : integer
+
+#     # ALGORITMA FUNGSI
+#     # Inisialisasi variabel
+#     count = 0
+
+#     # Meloop setiap elemen dalam arr untuk menghitung jumlah elemennya
+#     for i in arr:
+#         count += 1
+
+#     return count
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -31,14 +44,6 @@ Sudo = False
 
 # Agar program terus berjalan
 while (True):
-    # Tambahan biar cantik (diuncomment)
-    # InfoUser = {"Nama":"Belum login"}
-    # # Membersihkan terminal pengguna
-    # system("clear")
-    # if (not Loaded): print("File belum diload", end = '\t')
-    # else: print("File sudah diload", end = '\t')
-    # if (not LoggedIn): print("Belum login")
-    # else: print("Selamat datang kembali {}! Selamat bermain.".format(InfoUser['Nama']))
 
     # Menerima input apa yang mau dilakukan user
     Aksi = input("Apa yang mau kamu lakukan?\n$ ")
@@ -47,7 +52,7 @@ while (True):
     Aksi = Aksi.lower()
     # me-load file
     if (Aksi == "load"):
-        DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang,DictionaryPassword = F01.load()
+        DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang = F01.load()
         # Menandakan sudah loading
         Loaded = True
     # exit/menghentikan program
@@ -55,7 +60,6 @@ while (True):
         # Jika file sudah diload sebelumnya
         if (Loaded):
             YesNo = input("Apakah anda mau menyimpan file (y/n)? ")
-            YesNo = YesNo.lower()
 
             if (YesNo == 'y'):
                 F02.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
@@ -67,7 +71,7 @@ while (True):
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         else:
             if (Aksi == "login"):
-                LoggedIn, IndexUser = F04.login(DatabaseUser,DictionaryPassword)
+                LoggedIn, IndexUser = F04.login(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
                 # Memeriksa apakah admin yang login atau bukan
                 # Yang login adalah admin
@@ -95,7 +99,7 @@ while (True):
         # Jika yang mengakses adalah admin dan file sudah diload
         elif (Sudo and LoggedIn and Loaded):
             if (Aksi == "signup"):
-                DatabaseUser, DictionaryPassword, InfoUser = F03.signup(DatabaseUser,DictionaryPassword)
+                DatabaseUser, InfoUser = F03.signup(DatabaseUser)
             elif (Aksi == "cari_pemain"):
                 F05.cari_pemain(DatabaseUser)
             elif (Aksi == "lihat_laporan"):
@@ -132,5 +136,4 @@ while (True):
         print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!")
 
 print("Sedang keluar dari program...")
-sleep(1)
 print("Sampai bertemu nanti!")
