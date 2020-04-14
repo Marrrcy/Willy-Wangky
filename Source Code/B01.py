@@ -7,7 +7,10 @@
 
 # KAMUS
 # function hash(Password : string) --> string
+# fungsi akan mengubah string Password menjadi sebuah string yang sudah di-hash dengan salt
+
 # function check_password(PasswordInput : string, PasswordUser : string) --> boolean
+# fungsi akan mencocokan PasswordInput dengan PasswordUser dan menghasilkan True jika sama
 
 # ALGORTIMA 
 

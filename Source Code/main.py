@@ -5,41 +5,35 @@
 
 # TODO
 # Komentar
-# Ganti nama variabel yang nampung file csv yg udh dibuka
 # Aksi == cari, lihat_laporan, beli_tiket, main, refund, kritik_saran
 
 # KAMUS
-# Aksi : string
-# DatabaseUser,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang : array of string dictionary
-# DictionaryPassword, InfoUser : dictionary of string
+
+# Database User : array[1..CONST_VARS.N] of array[1..8] of strings
+# DatabaseWahana : array[1..CONST_VARS.N] of array[1..5] of strings
+# DatabasePembelian : array[1..CONST_VARS.N] of array[1..4] of strings
+# DatabasePenggunaan : array[1..CONST_VARS.N] of array[1..4] of strings
+# DatabaseTiket :array[1..CONST_VARS.N] of array[1..3] of strings
+# DatabaseRefund : array[1..CONST_VARS.N] of array[1..4] of strings
+# DatabaseKritikSaran : array[1..CONST_VARS.N] of array[1..4] of strings
+# DatabaseTiketHilang : array[1..CONST_VARS.N] of array[1..4] of strings
+# InfoUser : array[0..7] of string
 # Loaded, Login, Sudo : boolean
+# Aksi : string
 # YesNo : character
+# IndexUser : integer
 
 # ALGORITMA
 # load library
+import CONST_VARS
 import F01,F02,F03,F04,F05,F06,F12
-
-# # function panjangArray (arr : integer) --> integer
-# def panjangArray(arr):
-#     # KAMUS LOKAL
-#     # count : integer
-
-#     # ALGORITMA FUNGSI
-#     # Inisialisasi variabel
-#     count = 0
-
-#     # Meloop setiap elemen dalam arr untuk menghitung jumlah elemennya
-#     for i in arr:
-#         count += 1
-
-#     return count
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
 Loaded = False
 # Menandakan belum login jika false
 LoggedIn = False
-# Menandakan yang mengakses adalah pemain jika false
+# Menandakan yang login adalah pemain jika false
 Sudo = False
 
 # Agar program terus berjalan
@@ -71,8 +65,9 @@ while (True):
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         else:
             if (Aksi == "login"):
-                LoggedIn, IndexUser = F04.login(DatabaseUser)
+                IndexUser = F04.login(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
+                LoggedIn = True
                 # Memeriksa apakah admin yang login atau bukan
                 # Yang login adalah admin
                 if (InfoUser["Role"] == "admin"): 
@@ -99,7 +94,8 @@ while (True):
         # Jika yang mengakses adalah admin dan file sudah diload
         elif (Sudo and LoggedIn and Loaded):
             if (Aksi == "signup"):
-                DatabaseUser, InfoUser = F03.signup(DatabaseUser)
+                DatabaseUser, IndexUser = F03.signup(DatabaseUser)
+                InfoUser = User[IndexUser]
             elif (Aksi == "cari_pemain"):
                 F05.cari_pemain(DatabaseUser)
             elif (Aksi == "lihat_laporan"):

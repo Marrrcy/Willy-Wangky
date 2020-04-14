@@ -8,15 +8,16 @@
 # KAMUS
 
 # Definisi prosedur dan fungsi
-''' procedure save(input User : array[1..CONST_VARS.N] of array[1..8] of strings
-    input Wahana : array[1..CONST_VARS.N] of array[1..5] of strings
-    input Pembelian : array[1..CONST_VARS.N] of array[1..4] of strings
-    input Penggunaan : array[1..CONST_VARS.N] of array[1..4] of strings
-    input Tiket :array[1..CONST_VARS.N] of array[1..3] of strings
-    input Refund : array[1..CONST_VARS.N] of array[1..4] of strings
-    input KritikSaran : array[1..CONST_VARS.N] of array[1..4] of strings
-    input TiketHilang : array[1..CONST_VARS.N] of array[1..4] of strings,)'''
-# procedure save(input NamaFile : string, input NewDB : array[1..CONST_VARS.N] of array[1..M] of strings)
+# procedure save(input User : array[1..CONST_VARS.N] of array[1..8] of strings
+                # input Wahana : array[1..CONST_VARS.N] of array[1..5] of strings
+                # input Pembelian : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input Penggunaan : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input Tiket :array[1..CONST_VARS.N] of array[1..3] of strings
+                # input Refund : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input KritikSaran : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input TiketHilang : array[1..CONST_VARS.N] of array[1..4] of strings)
+# I.S: User, Wahana, Pembelian, Penggunaan, Tiket, Refund, KirtikSaran, TiketHilang terdefinisi
+# F.S: User, Wahana, Pembelian, Penggunaan, Tiket, Refund, KirtikSaran, TiketHilang tersimpan di file
 
 # ALGORTIMA utama
 # Menyiapkan library yang dibutuhkan
@@ -24,7 +25,6 @@ import csv, CONST_VARS
 
 # Realisasi fungsi dan prosedur
 def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
-    # Membuka file-file CSV lalu memasukkannya ke dalam suatu variabel
     # KAMUS LOKAL
     # FileUser : SEQFILE of :
     #   (*) : csvUser : array[0..7] of string
@@ -95,9 +95,9 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     FileTiketHilang = input("Masukkan nama File Kehilangan Tiket (default: tikethilang): ")
     FileTiketHilang = CONST_VARS.PATH_TO_DB + FileTiketHilang
     
-    # Mengassign ke variabel
+    # Menyimpan database ke file
     # Databaser User
-    csvUser = open(FileUser, 'w', newline = '') # Membuka file
+    csvUser = open(FileUser, 'w') # Membuka file
     csvWriter_User = csv.writer(csvUser) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen

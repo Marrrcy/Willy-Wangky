@@ -7,12 +7,12 @@
 
 # KAMUS
 
-# inisialisasi fungsi dan prosedur
-# function load_csv(NamaFile : string) --> array[1..N] of array[1..M] of strings
-# function load() --> array[1..N] of array[1..8] of strings,array[1..N] of array[1..5] of strings,
-#                     array[1..N] of array[1..4] of strings,array[1..N] of array[1..4] of strings,
-#                     array[1..N] of array[1..3] of strings,array[1..N] of array[1..4] of strings,
-#                     array[1..N] of array[1..4] of strings,array[1..N] of array[1..4] of strings
+# definisi fungsi dan prosedur
+# function load() --> array[0..CONST_VARS.N-1] of array[1..8] of strings,array[0..CONST_VARS.N-1] of array[1..5] of strings,
+#                     array[0..CONST_VARS.N-1] of array[1..4] of strings,array[0..CONST_VARS.N-1] of array[1..4] of strings,
+#                     array[0..CONST_VARS.N-1] of array[1..3] of strings,array[0..CONST_VARS.N-1] of array[1..4] of strings,
+#                     array[0..CONST_VARS.N-1] of array[1..4] of strings,array[0..CONST_VARS.N-1] of array[1..4] of strings
+# Fungsi akan me-load file-file csv lalu menyimpannya ke dalam array-array database
 
 # ALGORTIMA utama
 # Menyiapkan library yang dibutuhkan
@@ -20,7 +20,6 @@ import csv, CONST_VARS
 
 # Realisasi fungsi dan prosedur
 def load():
-    # Membuka file-file CSV lalu memasukkannya ke dalam suatu variabel
     # KAMUS LOKAL
     # FileUser : SEQFILE of :
     #   (*) : csvUser : array[0..7] of string
@@ -87,7 +86,6 @@ def load():
     TiketHilang = [[' ' for i in range(4)] for j in range(CONST_VARS.N)]
 
     # ALGORITMA fungsi
-
     # Menerima nama file
     FileUser = input("Masukkan nama File User (default: user): ")
     # Menambahkan path ke file csv
