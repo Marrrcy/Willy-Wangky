@@ -68,34 +68,34 @@ while (True):
                 IndexUser = F04.login(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
                 LoggedIn = True
+
                 # Memeriksa apakah admin yang login atau bukan
-                # Yang login adalah admin
-                if (InfoUser["Role"] == "admin"): 
+                if (InfoUser[5] == "admin"): # Yang login adalah admin
                     Sudo = True
                 else: # Yang login adalah pemain
                     Sudo = False
-            # save/menyimpan
+
+            # save/menyimpan database
             elif (Aksi == "save"):
                 F02.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
+            
+            # Mencari wahana
             elif (Aksi == "cari"):
                 F06.cari(DatabaseWahana)
 
     # Perintah-perintah yang hanya dapat diakses oleh admin
     # mendaftarkan pemain baru, pencarian pemain, melihat kritik dan saran, menambahkan wahana, topup saldo, atau melihat riwayat penggunaan wahana
     elif (Aksi == "signup" or Aksi == "cari_pemain" or Aksi == "lihat_laporan" or Aksi == "tambah_wahana" or Aksi == "topup" or Aksi == "riwayat_wahana"):
-        # Jika file-file belum diload
-        if not(Loaded):
+        if not(Loaded): # Jika file-file belum diload
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
-        # Jika yang mengakses adalah pemain
-        if not(Sudo):
-            print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!")
-        elif not(LoggedIn):
+        elif not(Sudo): # Jika yang mengakses adalah pemain
+            print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!") 
+        elif not(LoggedIn): # Jika belum login
             print("Kamu belum login")
-        # Jika yang mengakses adalah admin dan file sudah diload
-        elif (Sudo and LoggedIn and Loaded):
+        elif (Sudo and LoggedIn and Loaded): # Jika yang mengakses adalah admin dan file sudah diload
             if (Aksi == "signup"):
                 DatabaseUser, IndexUser = F03.signup(DatabaseUser)
-                InfoUser = User[IndexUser]
+                InfoUser = DatabaseUser[IndexUser]
             elif (Aksi == "cari_pemain"):
                 F05.cari_pemain(DatabaseUser)
             elif (Aksi == "lihat_laporan"):
@@ -109,16 +109,13 @@ while (True):
 
     # Perintah-perintah yang hanya dapat diakses oleh pemain
     elif (Aksi == "beli_tiket" or Aksi == "main" or Aksi == "refund" or Aksi == "kritik_saran"):
-        # Jika file-file belum diload
-        if not(Loaded):
+        if not(Loaded): # Jika file-file belum diload
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
-        # Jika yang mengakses adalah admin
-        if Sudo:
+        elif Sudo: # Jika yang mengakses adalah admin
             print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!")
-        elif not(LoggedIn):
+        elif not(LoggedIn): # Jika belum login
             print("Kamu belum login")
-        # Jika yang mengakses adalah pemain dan file sudah diload
-        elif (not(Sudo) and LoggedIn and Loaded):
+        elif (not(Sudo) and LoggedIn and Loaded): # Jika yang mengakses adalah pemain dan file sudah diload
             if (Aksi == "beli_tiket"):
                 None
             elif (Aksi == "main"):
@@ -127,6 +124,7 @@ while (True):
                 None
             elif (Aksi == "kritik_saran"):
                 None
+
     # Jika command tidak ada
     else:
         print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!")
