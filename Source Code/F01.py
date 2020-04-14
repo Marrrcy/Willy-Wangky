@@ -130,7 +130,7 @@ def load():
     csvUser.close() # Menutup file
 
     # Database Wahana
-    csvWahana = open(FileUser, 'r') # Membuka file
+    csvWahana = open(FileWahana, 'r') # Membuka file
     csvReader_Wahana = csv.reader(csvWahana) # Membaca file secara csv
 
     i = 0 # First element
