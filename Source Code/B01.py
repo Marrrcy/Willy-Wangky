@@ -1,9 +1,10 @@
 # Josep Marcello / 16519170
 # 8 April 2020
-# Program encryption
+# Program hashing
 # Program untuk meng-hash password (dan salt) serta mencocokan password sebenarnya dengan input
 
 # TODO
+# bikin algoritma hashing sendiri?
 
 # KAMUS
 # function hash(Password : string) --> string

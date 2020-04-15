@@ -15,7 +15,7 @@ N = 1000
 # const MARK_8 : array[0..7] of string
 # const MARK_5 : array[0..4] of string
 # const MARK_4 : array[0..3] of string
-# const MARK_4 : array[0..2] of string
+# const MARK_3 : array[0..2] of string
 MARK_8 = ['-']*8
 MARK_5 = ['-']*5
 MARK_4 = ['-']*4
