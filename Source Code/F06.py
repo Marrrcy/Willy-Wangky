@@ -38,7 +38,7 @@ def cari(Wahana):
 	# Mengubah persyaratan menyesuaikan database
 	if Umur == 1 :
 		Umur="anak-anak"
-	elif Umur ==2 :
+	elif Umur == 2 :
 		Umur="dewasa"
 	else:
 		Umur="semua umur"

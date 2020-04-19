@@ -24,7 +24,7 @@
 # load library
 import CONST_VARS
 import csv
-import F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15
+import B03,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -92,7 +92,7 @@ while (LoggedIn):
         break
 
     # Menyimpan, login, atau mencari wahana
-    elif (Aksi == "login" or Aksi == "save" or Aksi == "cari"):
+    elif (Aksi == "login" or Aksi == "save" or Aksi == "cari" or Aksi == "best_wahana"):
         if not(Loaded):
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         else:
@@ -117,9 +117,13 @@ while (LoggedIn):
             elif (Aksi == "cari"):
                 F06.cari(DatabaseWahana)
 
+            # Melihat wahana terbaik
+            elif (Aksi == "best_wahana"):
+                B03.bestwahana(DatabaseWahana)
+
     # Perintah-perintah yang hanya dapat diakses oleh admin
     # mendaftarkan pemain baru, pencarian pemain, melihat kritik dan saran, menambahkan wahana, topup saldo, atau melihat riwayat penggunaan wahana
-    elif (Aksi == "signup" or Aksi == "cari_pemain" or Aksi == "lihat_laporan" or Aksi == "tambah_wahana" or Aksi == "topup" or Aksi == "riwayat_wahana"):
+    elif (Aksi == "signup" or Aksi == "cari_pemain" or Aksi == "lihat_laporan" or Aksi == "tambah_wahana" or Aksi == "topup" or Aksi == "riwayat_wahana" or Aksi == "tiket_pemain"):
         if not(Loaded): # Jika file-file belum diload
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         elif not(Sudo): # Jika yang mengakses adalah pemain
@@ -140,6 +144,8 @@ while (LoggedIn):
                 None
             elif (Aksi == "riwayat_wahana"):
                 F14.lihatriwayatwahana(DatabaseWahana)
+            elif (Aksi == "tiket_pemain"):
+                F15.tiket_pemain(DatabaseTiket,DatabaseWahana)
 
     # Perintah-perintah yang hanya dapat diakses oleh pemain
     elif (Aksi == "beli_tiket" or Aksi == "main" or Aksi == "refund" or Aksi == "kritik_saran"):

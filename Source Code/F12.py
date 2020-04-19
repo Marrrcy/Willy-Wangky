@@ -7,14 +7,15 @@
 # tambah_wahana : function
 
 # DEFINISI FUNGSI
+import CONST_VARS
 def tambah_wahana(Wahana):
 	# KAMUS LOKAL
-	# df : dictionary of strings
+	# df : array[0..4] of strings
 	# Id, Nama, Harga, Umur, Tinggi : string
 	
 	# ALGORITMA
 	# Inisialisasi dictionary
-	df = {}
+	df = ['' for i in range(5)]
 	
 	# Menerima informasi wahana tambahan
 	print("Masukkan Informasi Wahana yang ditambahkan:")
@@ -26,13 +27,24 @@ def tambah_wahana(Wahana):
 	
 	# df = [(Id),(Nama),(Harga),(Umur),(Tinggi)]
 	# IdWahana,NamaWahana,HargaTiket,BatasanUmur,BatasanTinggi
-	df["IdWahana"] = Id
-	df["NamaWahana"] = Nama
-	df["HargaTiket"] = Harga
-	df["BatasanUmur"] = Umur
-	df["BatasanTinggi"] = Tinggi
-	Wahana.append(df)
-	# print(Wahana)
+	df[0] = Id
+	df[1] = Nama
+	df[2] = Harga
+	df[3] = Umur
+	df[4] = Tinggi
+	# Wahana.append(df)
+	# Mendapatkan index wahana baru
+	Index = 1
+	row = Wahana[Index] # First element
+
+	while (row != CONST_VARS.MARK_5):
+		Index += 1
+		row = Wahana[Index] # Next element
+
+	# row == CONST_VARS.MARK_5
+
+	Wahana[Index] = df
+	print(Wahana)
 
 	return Wahana
 	

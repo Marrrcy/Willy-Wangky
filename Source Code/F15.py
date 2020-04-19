@@ -18,13 +18,13 @@ def tiket_pemain (KepemilikanTiket,Wahana):
 	# Menampilkan informasi tiket
 	print("Riwayat:")
 	for i in KepemilikanTiket:
-		if Users==i[0]:
+		if Users == i[0]:
 			Id = i[1]
 			Jumlah = i[2]
 			for j in Wahana:
-				if Id==i[0]:
+				if Id==j[0]:
 					Nama = j[1]
-					print((Id),"|",(Nama),"|",(Jumlah))
+					print((Id),"\t|\t",(Nama),"\t|\t",(Jumlah))
 	
 
 # KepemilikanTiket = [["Username","Id","Jumlah"],
