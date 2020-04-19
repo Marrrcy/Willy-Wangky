@@ -87,7 +87,7 @@ while (True):
             
             # Melihat wahana terbaik
             elif (Aksi == "best_wahana"):
-                None
+                B03.bestwahana(DatabaseWahana)
 
     # Perintah-perintah yang hanya dapat diakses oleh admin
     # mendaftarkan pemain baru, pencarian pemain, melihat kritik dan saran, menambahkan wahana, topup saldo, atau melihat riwayat penggunaan wahana
@@ -111,7 +111,7 @@ while (True):
             elif (Aksi == "topup"):
                 None
             elif (Aksi == "riwayat_wahana"):
-                None
+                F14.lihatriwayatwahana(DatabaseWahana)
             elif (Aksi == "tiket_pemain"):
                 F15.tiket_pemain(DatabaseTiket,DatabaseWahana)
 
