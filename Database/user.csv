@@ -1,8 +1,8 @@
 Nama,TanggalLahir,TinggiBadan,Username,Password,Role,Saldo,StatusGold
 Mamang Admin,01/01/2001,100,admin,03ade201bf4fcf49ebd3509ca5d401b8d1197ebd4b91c73472985e8d99533587a923e5d585fe1f9ab1e70cd69c3c2f2e9c188761ec3cf508d378adc30a2d3ae1:3c5b36e27bce11ea97b3646e69a7cc67,admin,0,True
-a,a,a,a,2dc178ec2be4bb442c8cd8df614002d759ea5e0bb41fe75e0feb82100f5604f30aec8c03dfeb065936015854701990d2e86dad532b3163621b73ef2ffd8ce381:7162a1c67e3111ea930d646e69a7cc67,pemain,50000,False
-b,b,b,b,41b6678b5cb3ebae03b1ed7b6cab40c360a77eed327c87ae26a1ec94bdb67807d0e5ea5906871bcffeeeb7f782034b0f1ebb9fd8d3b295e709f6addbef71bfe9:bab2cacc7e3111ea819f646e69a7cc67,pemain,50000,False
-c,c,c,c,e853d92e80eaa0a1767ccbfa4917a0fa08282b7f70a4ed8dd5cc1bcd4dcfbee7fd5328a367c97aa5c7028f3350a7000e5545e52d73f37badd364bfa285c88b03:3dfab2c87e3211eaae2d646e69a7cc67,pemain,50000,False
+Jono Arip,20/05/2007,148,a,2dc178ec2be4bb442c8cd8df614002d759ea5e0bb41fe75e0feb82100f5604f30aec8c03dfeb065936015854701990d2e86dad532b3163621b73ef2ffd8ce381:7162a1c67e3111ea930d646e69a7cc67,pemain,50000,False
+-,-,-,-,-,-,-,-
+-,-,-,-,-,-,-,-
 -,-,-,-,-,-,-,-
 -,-,-,-,-,-,-,-
 -,-,-,-,-,-,-,-

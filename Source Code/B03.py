@@ -9,24 +9,25 @@
 tiketterjual = []
 tiketterjualterurut = []
 tiketterjual_terurut = []
-tiketterjualdarikecilkebesar =[]
 
 def bestwahana (wahana):
     #meinput nilai kolom jumlahtiket dari file ke sebuah array tiketterjual
-    for i in range (len(User)):
-        tiketterjual.append(User[i]['jumlahtiket'])
-
-    tiketterjualterurut = tiketterjual
+    for i in range (1000):
+        while user[i]['jumlahtiket'] != ',':
+            tiketterjual[i] = user[i]['jumlahtiket']
 
     #mengurutkan array dari besar ke kecil
-    tiketterjual_terurut = sorted(tiketterjualterurut)
 
-    #mengurutkan dta berdasarkan urutan di array tiketterjual
-    for i in range (len(User)):
-        for j in range (len(User)):
-            if tiketterjualterurut[i]==tiketterjual_terurut[j]:
-                tiketterjualdarikecilkebesar.append(User[j])
+    tiketterjual_terurut = sorted(tiketterjual)
+
+    #mengurutkan data berdasarkan urutan di array tiketterjual
+    for i in range (1,1000):
+        for row in range (Wahana):
+            if tiketterjual_terurut[i] == row['jumlahtiket']:
+                tiketterjual_terurut[i] = row
 
     #menampilkan 3 wahana terbaik berdasarkan jumlah tiket yang terjual
-    for i in range (len(User),len(User)-3,-1):
-        return print(row)
+    for i in range (1000,997,-1):
+        return print(tiketterjual_terurut[i])
+
+

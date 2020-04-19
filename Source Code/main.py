@@ -5,7 +5,7 @@
 
 # TODO
 # Komentar
-# Aksi == cari, lihat_laporan, beli_tiket, main, refund, kritik_saran
+# Aksi == cari, lihat_laporan, beli_tiket, main, refund
 
 # KAMUS
 
@@ -26,7 +26,7 @@
 # ALGORITMA
 # load library
 import CONST_VARS
-import F01,F02,F03,F04,F05,F06,F12
+import F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -35,6 +35,9 @@ Loaded = False
 LoggedIn = False
 # Menandakan yang login adalah pemain jika false
 Sudo = False
+# Mengisi InfoUser
+InfoUser = ["" for i in range(8)]
+
 
 # Agar program terus berjalan
 while (True):
@@ -42,8 +45,6 @@ while (True):
     # Menerima input apa yang mau dilakukan user
     Aksi = input("Apa yang mau kamu lakukan?\n$ ")
 
-    # Mengubah input menjadi huruf kecil
-    Aksi = Aksi.lower()
     # me-load file
     if (Aksi == "load"):
         DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang = F01.load()
@@ -56,6 +57,7 @@ while (True):
             YesNo = input("Apakah anda mau menyimpan file (y/n)? ")
 
             if (YesNo == 'y'):
+                DatabaseUser[IndexUser] = InfoUser
                 F02.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
         break
 
@@ -117,13 +119,14 @@ while (True):
             print("Kamu belum login")
         elif (not(Sudo) and LoggedIn and Loaded): # Jika yang mengakses adalah pemain dan file sudah diload
             if (Aksi == "beli_tiket"):
-                None
+                InfoUser, DatabaseTiket, DatabaseWahana = F08.main(InfoUser,DatabaseTiket,DatabaseWahana)
             elif (Aksi == "main"):
                 None
             elif (Aksi == "refund"):
                 None
             elif (Aksi == "kritik_saran"):
-                None
+                DatabaseKritikSaran = F10.KritikdanSaran(DatabaseKritikSaran, DatabaseWahana, InfoUser)
+                print(DatabaseKritikSaran)
 
     # Jika command tidak ada
     else:

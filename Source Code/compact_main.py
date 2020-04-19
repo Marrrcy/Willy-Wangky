@@ -24,7 +24,7 @@
 # load library
 import CONST_VARS
 import csv
-import F03,F04,F05,F06,F07,F08,F12
+import F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -48,6 +48,14 @@ def load_csv(FileName):
 def load():
     return load_csv("user.csv"),load_csv("wahana.csv"),load_csv("pembelian.csv"),load_csv("penggunaan.csv"), load_csv("tiket.csv"), load_csv("refund.csv"), load_csv("kritiksaran.csv"),load_csv("tikethilang.csv")
 
+def save(FileName,DB):
+    FileName = CONST_VARS.PATH_TO_DB+FileName
+
+    with open(FileName, 'w') as csvfile:
+        csvwriter = csv.writer(csvfile)
+
+        csvwriter.writerows(DB)
+
 Sudo = LoggedIn = False; Loaded = True
 
 print("Loading file...")
@@ -66,12 +74,11 @@ else: # Yang login adalah pemain
 
 while (LoggedIn):
     Aksi = input("Apa yang mau kamu lakukan?\n$ ")
-
     # me-load file
     if (Aksi == "load"):
-        DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang = F01.load()
-        # Menandakan sudah loading
-        Loaded = True
+        print("Loading file...")
+        DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang = load()
+        print("File sudah diload.")
     # exit/menghentikan program
     elif (Aksi == "exit"):
         # Jika file sudah diload sebelumnya
@@ -79,8 +86,9 @@ while (LoggedIn):
             YesNo = input("Apakah anda mau menyimpan file (y/n)? ")
 
             if (YesNo == 'y'):
-                DatabaseUser[IndexUser] = InfoUser
-                F02.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
+                print("Menyimpan file...")
+                save("user.csv",DatabaseUser),save("wahana.csv",DatabaseWahana),save("pembelian.csv",DatabasePembelian),save("penggunaan.csv",DatabasePenggunaan), save("tiket.csv",DatabaseTiket), save("refund.csv",DatabaseRefund), save("kritiksaran.csv",DatabaseKritikSaran),save("tikethilang.csv",DatabaseTiketHilang)
+                print("File tersimpan")
         break
 
     # Menyimpan, login, atau mencari wahana
@@ -101,7 +109,9 @@ while (LoggedIn):
 
             # save/menyimpan database
             elif (Aksi == "save"):
-                F02.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
+                print("Menyimpan file...")
+                save("user.csv",DatabaseUser),save("wahana.csv",DatabaseWahana),save("pembelian.csv",DatabasePembelian),save("penggunaan.csv",DatabasePenggunaan), save("tiket.csv",DatabaseTiket), save("refund.csv",DatabaseRefund), save("kritiksaran.csv",DatabaseKritikSaran),save("tikethilang.csv",DatabaseTiketHilang)
+                print("File tersimpan")
             
             # Mencari wahana
             elif (Aksi == "cari"):
@@ -129,7 +139,7 @@ while (LoggedIn):
             elif (Aksi == "topup"):
                 None
             elif (Aksi == "riwayat_wahana"):
-                None
+                F14.lihatriwayatwahana(DatabaseWahana)
 
     # Perintah-perintah yang hanya dapat diakses oleh pemain
     elif (Aksi == "beli_tiket" or Aksi == "main" or Aksi == "refund" or Aksi == "kritik_saran"):
@@ -147,7 +157,8 @@ while (LoggedIn):
             elif (Aksi == "refund"):
                 None
             elif (Aksi == "kritik_saran"):
-                None
+                DatabaseKritikSaran = F10.KritikdanSaran(DatabaseKritikSaran, DatabaseWahana, InfoUser)
+                print(DatabaseKritikSaran)
 
     # Jika command tidak ada
     else:

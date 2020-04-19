@@ -7,24 +7,37 @@
 # tanggal_laporan  : integer
 
 #Algoritma
-def KritikdanSaran (DatabaseKritikSaran,InfoUser):
-    Kritiksaran = {}
+import CONST_VARS
+
+def KritikdanSaran (Kritiksaran,Wahana,InfoUser):
+    # KAMUS LOKAL
+    # i,index : integer
 
     #Bagian input
     Id_Wahana = input('Masukkan ID Wahana: ')
     tanggal_laporan = input('Masukkan tanggal pelaporan: ')
     kritik_saran = input('Kritik/saran Anda: ')
-    Username = InfoUser['Username']
+    Username = InfoUser[0]
 
     # Bagian output
     print('Kritik dan saran Anda kami terima')
 
+    # Mencari bagian database yang kosong
+    i = 0
+    for row in Kritiksaran:
+        if (row == CONST_VARS.MARK_4):
+            index = i
+            break
+
+        i += 1
+
     #Memasukan input ke file csv
-    Kritiksaran['Username'] = Username
-    Kritiksaran['TanggalKritik'] = tanggal_laporan
-    Kritiksaran['IDWahana'] = Id_Wahana
-    Kritiksaran['IsiKritik'] = kritik_saran
 
-    DatabaseKritikSaran.append(Kritiksaran)
+    Kritiksaran[index][0] = Username  #username urutan ke - 0
+    Kritiksaran[index][1] = tanggal_laporan  #tanggalkritik urutan ke - 1
+    Kritiksaran[index][2] = Id_Wahana  #IDWahana urutan ke - 2
+    Kritiksaran[index][3] = kritik_saran  #IsiKritik urutan ke - 3
 
-    return DatabaseKritikSaran
+    return Kritiksaran
+
+
