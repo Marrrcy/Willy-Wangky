@@ -7,6 +7,8 @@
 # tiket_hilang : function
 
 # DEFINISI FUNGSI
+import CONST_VARS
+
 def tiket_hilang(KepemilikanTiket,TiketHilang):
 	# KAMUS LOKAL
 	# Users,Tanggal,Id : string
@@ -24,27 +26,42 @@ def tiket_hilang(KepemilikanTiket,TiketHilang):
 	for i in KepemilikanTiket:
 		if Users == i[0]:
 			if Id == i[1]:
-				if Hilang <= i[2]:
+				if Hilang <= int(i[2]):
 					# Menambah database Tiket Hilang
 					# Inisialisasi dictionary
-					df = {}
+					df = ['' for i in range(4)]
 					
 					# df = [(Users),(Tanggal),(Id),(Hilang)]
 					# Username,TanggalHilang,IdWahana,BanyakHilang
-					df["Username"] = Users
-					df["TanggalHilang"] = Tanggal
-					df["IdWahana"] = Id
-					df["BanyakHilang"] = Hilang
-					TiketHilang.append(df)
+					df[0] = Users
+					df[1] = Tanggal
+					df[2] = Id
+					df[3] = str(Hilang)
+					# TiketHilang.append(df)
 					# print(TiketHilang)
 
+					# Mendapatkan index wahana baru
+					Index = 1
+					row = TiketHilang[Index] # First element
+
+					while (row != CONST_VARS.MARK_4):
+						Index += 1
+						row = TiketHilang[Index] # Next element
+
+					# row == CONST_VARS.MARK_5
+					
+					TiketHilang[Index] = df
+
 					# Mengubah database Kepemilikan Tiket
-					i[2]-=(Hilang)
+					i[2]=int(i[2])-(Hilang)
 				
 					# Menyatakan berhasil mengubah data
 					print()
-					print("Laporan kehilangan tiket Anda telah direkam.")
-					return TiketHilang,KepemilikanTiket
+					print("Laporan kehilangan tiket Anda telah direkam.")\
+
+					return (TiketHilang,KepemilikanTiket)
+
+	return (TiketHilang,KepemilikanTiket)
 							
 					
 # KepemilikanTiket = [["Username","Id","Jumlah"],

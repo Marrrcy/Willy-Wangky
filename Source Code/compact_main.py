@@ -24,7 +24,7 @@
 # load library
 import CONST_VARS
 import csv
-import B03,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15
+import B03,B04,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -148,7 +148,7 @@ while (LoggedIn):
                 F15.tiket_pemain(DatabaseTiket,DatabaseWahana)
 
     # Perintah-perintah yang hanya dapat diakses oleh pemain
-    elif (Aksi == "beli_tiket" or Aksi == "main" or Aksi == "refund" or Aksi == "kritik_saran"):
+    elif (Aksi == "beli_tiket" or Aksi == "main" or Aksi == "refund" or Aksi == "kritik_saran" or Aksi == "tiket_hilang"):
         if not(Loaded): # Jika file-file belum diload
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         elif Sudo: # Jika yang mengakses adalah admin
@@ -164,7 +164,8 @@ while (LoggedIn):
                 None
             elif (Aksi == "kritik_saran"):
                 DatabaseKritikSaran = F10.KritikdanSaran(DatabaseKritikSaran, DatabaseWahana, InfoUser)
-                print(DatabaseKritikSaran)
+            elif (Aksi == "tiket_hilang"):
+                (DatabaseTiketHilang,DatabaseTiket)=  B04.tiket_hilang(DatabaseTiket, DatabaseTiketHilang)
 
     # Jika command tidak ada
     else:
