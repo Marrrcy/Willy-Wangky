@@ -3,57 +3,90 @@
 # Program Membeli Tiket
 # Program akan menambahkan jumlah tiket dari pengguna
 
+import CONST_VARS
+
 def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
     #Menerima informasi user
     IdWahana = input("Masukkan ID wahana: ")
     TanggalPembelian = input("Masukkan tanggal hari ini: ")
     JumlahTiket = int(input("Jumlah tiket yang dibeli: "))
 
-    df_tiket = {}
-    df_pembelian = {}
+    # df_tiket = {}
+    df_tiket = ['' for i in range(3)]
+    # df_pembelian = {}
+    df_pembelian = ['' for i in range(4)]
 
     found = 0
+    IndexWahana = 0
     for wahana in DatabaseWahana :
-        if(wahana["IdWahana"] == IdWahana):
+        # if(wahana["IdWahana"] == IdWahana):
+        if(wahana[0] == IdWahana):
             found += 1
+            break
             # break woiiii
+        IndexWahana += 1
 
     if found == 0 :
         print("Tidak ada wahana")
-
-    # Info aja, ini biar lebih enak diliat, gak harus diubah gini. Komentar ini boleh diapus
-    # found = False
-    # for wahana in DatabaseWahana:
-    #     if(wahana["IdWahana"] == IdWahana):
-    #         found True
-    #         # break woiiii
-
-    # if not found:
-    #     print("Tidak ada wahana")
+        return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana
         
-    if InfoUser["StatusGold"] == False :
-        if (int(InfoUser["Umur"]) >= int(wahana["BatasUmur"]) and int(InfoUser["Tinggi"]) >= int(wahana["BatasTinggu"]) and  (int(InfoUser["Saldo"]) - wahana["Harga"] * JumlahTiket >= 0)):
-            InforUser["Saldo"] = int(InfoUser["Saldo"]) - wahana["Harga"] * JumlahTiket
+    # if InfoUser["StatusGold"] == False :
+    Umur = int(TanggalPembelian[6:9:])-int(InfoUser[1][6:9:])
+    Tinggi = 170 if (wahana[4] == ">=170 cm") else 0
+    if InfoUser[7] == "False" :
+        # if (int(InfoUser["Umur"]) >= int(wahana["BatasUmur"]) and int(InfoUser["Tinggi"]) >= int(wahana["BatasTinggu"]) and  (int(InfoUser["Saldo"]) - wahana["Harga"] * JumlahTiket >= 0)):
+        if (Umur >= int(wahana[IndexWahana][3]) and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - int(wahana[IndexWahana][2]) * JumlahTiket >= 0)):
+            InfoUser[6] = str(int(InfoUser[6]) - int(wahana[2]) * JumlahTiket)
             print("Selamat bersenang-senang di Almond’s Charm.")
 
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
+            return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana
 
     else:
-        if (int(InfoUser["Umur"]) >= int(wahana["BatasUmur"]) and int(InfoUser["Tinggi"] >= int(wahana["BatasTinggu"]) and  (int(InfoUser["Saldo"]) - 0.5 * wahana["Harga"] * JumlahTiket >= 0))): 
+        # if (int(InfoUser["Umur"]) >= int(wahana["BatasUmur"]) and int(InfoUser["Tinggi"] >= int(wahana["BatasTinggu"]) and  (int(InfoUser["Saldo"]) - 0.5 * wahana["Harga"] * JumlahTiket >= 0))): 
+        if (Umur >= int(wahana[IndexWahana][3]) and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - 0.5 * int(wahana[IndexWahana][2]) * JumlahTiket >= 0)):
             print("Selamat bersenang-senang di Almond’s Charm")
-            InfoUser["Saldo"] = int(InfoUser["Saldo"]) - 0.5 * wahana["Harga"] * JumlahTiket
+            InfoUser[6] = str(int(InfoUser[6]) - 0.5 * int(wahana[IndexWahana][2]) * JumlahTiket)
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
+            return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana
+    
+    # Mendapatkan index untuk entri baru di database tiket
+    IndexTiket = 1
+    row = DatabaseTiket[IndexTiket] # First element
+    
+    while (row != CONST_VARS.MARK_3):
+        IndexTiket += 1
+        row = DatabaseTiket[IndexTiket] # Next element
+    
+    # row == CONST_VARS.MARK_8
+
+    # Mendapatkan index untuk entri baru di database pembelian
+    IndexPmb = 1
+    row = DatabasePembelian[IndexPmb] # First element
+    
+    while (row != CONST_VARS.MARK_4):
+        IndexPmb += 1
+        row = DatabasePembelian[IndexPmb] # Next element
+    
+    # row == CONST_VARS.MARK_8
                                                                     
-           
-    df_tiket["Username"] = InfoUser["Username"]
-    df_tiket["IdWahana"] = DatabaseWahana["IdWahana"]
-    df_tiket["JumlahTiket"] = DatabaseTiket["JumlahTiket"]
-    df_pembelian["Username"] = InfoUser["Username"]
-    df_pembelian["TanggalPembelian"] = InfoUser["TanggalPembelian"]
-    df_pembelian["JumlahTiket"] = DatabaseTiket["JumlahTiket"]
-                                                                      
-    DatabaseTiket.append(df_tiket)
-    DatabasePembelian.appen(df_pembelian)
-    return (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana)
+    # Menambahkan data baru ke database tiket sementara
+    df_tiket[0] = InfoUser[3]
+    df_tiket[1] = IdWahana
+    df_tiket[2] = JumlahTiket
+    
+    # Menambahkan data baru ke database pembelian sementara
+    df_pembelian[0] = InfoUser[3]
+    df_pembelian[1] = TanggalPembelian
+    df_pembelian[2] = IdWahana
+    df_pembelian[3] = JumlahTiket
+
+    # Menambahkan data baru ke database tiket 
+    DatabaseTiket[IndexTiket] = df_tiket
+
+    # Menambahkan data baru ke database pembelian 
+    DatabasePembelian[IndexPmb] = df_pembelian
+
+    return DatabaseTiket,DatabasePembelian

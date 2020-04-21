@@ -125,15 +125,15 @@ while (True):
             print("Kamu belum login")
         elif (not(Sudo) and LoggedIn and Loaded): # Jika yang mengakses adalah pemain dan file sudah diload
             if (Aksi == "beli_tiket"):
-                InfoUser, DatabaseTiket, DatabaseWahana = F08.main(InfoUser,DatabaseTiket,DatabaseWahana)
+                DatabaseTiket,DatabasePembelian = F07.beli_tiket(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana)
             elif (Aksi == "main"):
-                None
+                InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana = F08.main(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana)
             elif (Aksi == "refund"):
                 None
             elif (Aksi == "kritik_saran"):
                 DatabaseKritikSaran = F10.KritikdanSaran(DatabaseKritikSaran, DatabaseWahana, InfoUser)
             elif (Aksi == "tiket_hilang"):
-                (DatabaseTiketHilang,DatabaseTiket)=  B04.tiket_hilang(DatabaseTiket, DatabaseTiketHilang)
+                DatabaseTiketHilang,DatabaseTiket =  B04.tiket_hilang(DatabaseTiket, DatabaseTiketHilang)
 
     # Jika command tidak ada
     else:

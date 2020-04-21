@@ -59,9 +59,9 @@ def tiket_hilang(KepemilikanTiket,TiketHilang):
 					print()
 					print("Laporan kehilangan tiket Anda telah direkam.")\
 
-					return (TiketHilang,KepemilikanTiket)
+					return TiketHilang,KepemilikanTiket
 
-	return (TiketHilang,KepemilikanTiket)
+	return TiketHilang,KepemilikanTiket
 							
 					
 # KepemilikanTiket = [["Username","Id","Jumlah"],
