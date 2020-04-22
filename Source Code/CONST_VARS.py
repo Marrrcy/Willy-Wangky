@@ -1,4 +1,3 @@
-# Josep Marcello / 16519170
 # 14 April 2020
 # Program CONST_VARS
 # Program yang menyimpan konstanta-konstanta

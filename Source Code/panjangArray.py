@@ -1,4 +1,3 @@
-# Josep Marcello / 16519170
 # 13 April 2020
 # Program panjangArray
 # Program akan menghitung banyak elemen pada suatu array
