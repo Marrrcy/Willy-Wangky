@@ -143,7 +143,7 @@ while (LoggedIn):
             elif (Aksi == "topup"):
                 None
             elif (Aksi == "riwayat_wahana"):
-                F14.lihatriwayatwahana(DatabaseWahana)
+                F14.lihatriwayatwahana(DatabasePenggunaan)
             elif (Aksi == "tiket_pemain"):
                 F15.tiket_pemain(DatabaseTiket,DatabaseWahana)
 
