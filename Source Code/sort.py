@@ -3,7 +3,7 @@
 # Program untuk insertion sort
 
 # Kamus
-# function insertion_sort(arr : array of tupple dataSiswa) --> array of tupple dataSiswa
+# function insertion_sort(arr : array[0..CONST_VARS.N] of array string) --> array[0..CONST_VARS.N] of array string
 
 # Algoritma
 import CONST_VARS
@@ -22,7 +22,7 @@ def insertion_sort(matrix,p):
             j = i - 1
 
             # Memindahakn semua elemen dari [0..i] yang lbh kecil dari pivot
-            while (j >= 0 and matrix[j][p] > pivot[p] == '-'): # 0 di sini diganti ke yg lain aja; 
+            while (j >= 0 and matrix[j][p] > pivot[p]): # 0 di sini diganti ke yg lain aja; 
                 # misalnya mau saldo di database user, nanti jadinya int(matrix[j][6])
                 matrix[j+1] = matrix[j]
                 j -= 1
