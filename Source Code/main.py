@@ -26,7 +26,7 @@
 # ALGORITMA
 # load library
 import CONST_VARS
-import B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15
+import B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15,F16
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -53,12 +53,8 @@ while (True):
     # exit/menghentikan program
     elif (Aksi == "exit"):
         # Jika file sudah diload sebelumnya
-        if (Loaded):
-            YesNo = input("Apakah anda mau menyimpan file (y/n)? ")
-
-            if (YesNo == 'y'):
-                DatabaseUser[IndexUser] = InfoUser
-                F02.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
+        F16.exit(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang,Loaded)
+        print("Sampai bertemu di lain waktu{}!".format(InfoUser[0]))
         break
 
     # Menyimpan, login, atau mencari wahana

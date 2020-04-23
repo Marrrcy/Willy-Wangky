@@ -193,4 +193,4 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvTiketHilang.close() # Menutup file
 
     # Pesan konfirmasi file-file telah disave
-    print("Semua file telah disimpan")
+    print("Semua file telah disimpan.")

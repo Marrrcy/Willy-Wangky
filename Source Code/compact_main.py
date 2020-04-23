@@ -24,7 +24,7 @@
 # load library
 import CONST_VARS
 import csv
-import B03,B04,F03,F04,F05,F06,F07,F10,F11,F12,F14,F15
+import B03,B04,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15,F16
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -81,14 +81,7 @@ while (LoggedIn):
         print("File sudah diload.")
     # exit/menghentikan program
     elif (Aksi == "exit"):
-        # Jika file sudah diload sebelumnya
-        if (Loaded):
-            YesNo = input("Apakah anda mau menyimpan file (y/n)? ")
-
-            if (YesNo == 'y'):
-                print("Menyimpan file...")
-                save("user.csv",DatabaseUser),save("wahana.csv",DatabaseWahana),save("pembelian.csv",DatabasePembelian),save("penggunaan.csv",DatabasePenggunaan), save("tiket.csv",DatabaseTiket), save("refund.csv",DatabaseRefund), save("kritiksaran.csv",DatabaseKritikSaran),save("tikethilang.csv",DatabaseTiketHilang)
-                print("File tersimpan")
+        F16.exit(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang,Loaded)
         break
 
     # Menyimpan, login, atau mencari wahana
@@ -111,7 +104,7 @@ while (LoggedIn):
             elif (Aksi == "save"):
                 print("Menyimpan file...")
                 save("user.csv",DatabaseUser),save("wahana.csv",DatabaseWahana),save("pembelian.csv",DatabasePembelian),save("penggunaan.csv",DatabasePenggunaan), save("tiket.csv",DatabaseTiket), save("refund.csv",DatabaseRefund), save("kritiksaran.csv",DatabaseKritikSaran),save("tikethilang.csv",DatabaseTiketHilang)
-                print("File tersimpan")
+                print("File tersimpan.")
             
             # Mencari wahana
             elif (Aksi == "cari"):

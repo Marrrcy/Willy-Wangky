@@ -226,6 +226,6 @@ def load():
     csvTiketHilang.close() # Menutup file
 
     # Pesan konfirmasi file-file telah diload
-    print("Semua file telah diload")
+    print("Semua file telah diload.")
     
     return User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang
