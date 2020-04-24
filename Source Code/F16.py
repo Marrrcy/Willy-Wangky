@@ -27,5 +27,8 @@ def exit(dbU, dbW, dbPem, dbPeng, dbT, dbR, dbK, dbTH, loaded):
     if (loaded):
         saveyn = input("Ingin Menyimpan file (y/n)? ")
 
-        if (saveyn == 'y'):
+        if (saveyn == 'y' and loaded):
             F02.save(dbU, dbW, dbPem, dbPeng, dbT, dbR, dbK, dbTH)
+    
+    print("Sedang keluar dari program...")
+    print("Sampai bertemu nanti!")

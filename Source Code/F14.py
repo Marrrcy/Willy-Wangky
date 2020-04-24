@@ -21,5 +21,4 @@ def lihatriwayatwahana (DatabasePenggunaan):
 
 
     for i in range(idx):
-        # tanggal   |   username    |   jumlah
         print(Id_DatabaseWahana_ygsama[i][1] + '\t|\t' + Id_DatabaseWahana_ygsama[i][0] + '\t|\t' + Id_DatabaseWahana_ygsama[i][3])

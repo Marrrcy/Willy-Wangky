@@ -4,39 +4,27 @@
 # Program akan mengizinkan admin melihat jumlah tiket yang dimiliki pemain
 
 # KAMUS
+# CONST_VARS
 # tiket_pemain : procedure
 
 # DEFINISI PROSEDUR
+import CONST_VARS
+
 def tiket_pemain (KepemilikanTiket,Wahana):
-    # KAMUS LOKAL
-    # Users : string
-
-    # ALGORITMA
-    # Menginput username
-    Users = input("Masukkan username: ")
+	# KAMUS LOKAL
+	# Users : string
 	
-    # Menampilkan informasi tiket
-    print("Riwayat:")
-    for i in KepemilikanTiket:
-        if Users == i[0]:
-            Id = i[1]
-            Jumlah = i[2]
-            for j in Wahana:
-                if Id==j[0]:
-                    Nama = j[1]
-                    if (int(Jumlah) > 0):
-                        print((Id),"\t|\t",(Nama),"\t|\t",(Jumlah))
+	# ALGORITMA
+	# Menginput username
+	Users = input("Masukkan username: ")
 	
-
-# KepemilikanTiket = [["Username","Id","Jumlah"],
-# 					["Keija","A",1],
-#					["Keija","B",2]]
-
-# Wahana = [["Id","Nama","Harga","Umur","Tinggi"],
-# 			["A","Aku",10,"anak-anak","tanpa batasan"],
-# 			["B","Bait",20,"anak-anak",">=170 cm"],
-#			["C","Cicak",30,"dewasa",">=170 cm"],
-#			["D","Delman",40,"semua umur","tanpa batasan"]]
-
-# tiket_pemain(KepemilikanTiket,Wahana)
-
+	# Menampilkan informasi tiket
+	print("Riwayat:")
+	for i in (CONST_VARS.N):
+		if Users == KepemilikanTiket[i][0]:
+			Id = KepemilikanTiket[i][1]
+			Jumlah = KepemilikanTiket[i][2]
+			for j in (CONST_VARS.N):
+				if Id==Wahana[j][0]:
+					Nama = Wahana[j][1]
+					print((Id),"\t|\t",(Nama),"\t|\t",(Jumlah))

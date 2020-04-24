@@ -16,14 +16,15 @@ def insertion_sort(matrix,p):
     # ALGORITMA FUNGSI
     for i in range(1,CONST_VARS.N):
         pivot = matrix[i]
-        if (pivot[0] == '-'):
+
+        if (pivot == CONST_VARS.MARK_3 or pivot == CONST_VARS.MARK_4 or pivot == CONST_VARS.MARK_5 or pivot == CONST_VARS.MARK_8):
             break
         else:
             j = i - 1
 
             # Memindahakn semua elemen dari [0..i] yang lbh kecil dari pivot
-            while (j >= 0 and matrix[j][p] > pivot[p]): # 0 di sini diganti ke yg lain aja; 
-                # misalnya mau saldo di database user, nanti jadinya int(matrix[j][6])
+            while (j >= 0 and matrix[j][p] > pivot[p]):  
+                
                 matrix[j+1] = matrix[j]
                 j -= 1
 

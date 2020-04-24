@@ -4,10 +4,12 @@
 # Program akan menambahkan wahana baru ke dalam manajemen wahana
 
 # KAMUS
+# CONST_VARS
 # tambah_wahana : function
 
 # DEFINISI FUNGSI
 import CONST_VARS
+
 def tambah_wahana(Wahana):
 	# KAMUS LOKAL
 	# df : array[0..4] of strings
@@ -46,8 +48,3 @@ def tambah_wahana(Wahana):
 	Wahana[Index] = df
 
 	return Wahana
-	
-	
-# User = [["Id","Nama","Harga","Umur","Tinggi"]]
-
-# tambah_wahana(User)

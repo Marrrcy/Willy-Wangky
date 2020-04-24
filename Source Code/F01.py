@@ -119,13 +119,15 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_User):
+    for j in range(CONST_VARS.N):
+        row = next(csvReader_User) 
         User[i] = row # Memproses element
         i += 1 # Next element
 
     # Ketika file sudah habis
 
     csvUser.close() # Menutup file
+    print(User)
 
     # Database Wahana
     csvWahana = open(FileWahana, 'r') # Membuka file
@@ -133,7 +135,8 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_Wahana):
+    for j in range(CONST_VARS.N):
+        row = next(csvReader_Wahana)
         Wahana[i] = row # Memproses element
         i += 1 # Next element
 
@@ -147,7 +150,8 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_Pembelian):
+    for j in range(CONST_VARS.N): 
+        row = next(csvPembelian)
         Pembelian[i] = row # Memproses element
         i += 1 # Next element
 
@@ -161,7 +165,8 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_Penggunaan):
+    for j in range(CONST_VARS.N): 
+        row = next(csvPenggunaan)
         Penggunaan[i] = row # Memproses element
         i += 1 # Next element
 
@@ -175,7 +180,8 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_Tiket):
+    for j in range(CONST_VARS.N): 
+        row = next(csvReader_Tiket)
         Tiket[i] = row # Memproses element
         i += 1 # Next element
 
@@ -189,7 +195,8 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_Refund):
+    for j in range(CONST_VARS.N): 
+        row = next(csvReader_Refund)
         Refund[i] = row # Memproses element
         i += 1 # Next element
 
@@ -203,7 +210,8 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_KritikSaran):
+    for j in range(CONST_VARS.N): 
+        row = next(csvReader_KritikSaran)
         KritikSaran[i] = row # Memproses element
         i += 1 # Next element
 
@@ -217,7 +225,8 @@ def load():
 
     i = 0 # First element
 
-    for row in (csvReader_TiketHilang):
+    for j in range(CONST_VARS.N): 
+        row = next(csvReader_TiketHilang)
         TiketHilang[i] = row # Memproses element
         i += 1 # Next element
 

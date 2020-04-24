@@ -4,9 +4,12 @@
 # Program akan mencari data pemain
 
 # KAMUS
+# CONST_VARS
 # cari_pemain : procedure
 
 # DEFINISI PROSEDUR
+import CONST_VARS
+
 def cari_pemain (User):
 	# KAMUS LOKAL
 	# Users : string
@@ -18,12 +21,12 @@ def cari_pemain (User):
 	
 	# Mencari informasi
 	found = False
-	for i in User:
-		if Users == i[3]:
+	for i in (CONST_VARS.N):
+		if Users == User[i][3]:
 			found = True
-			print ("Nama Pemain:",i[0])
-			print ("Tinggi Pemain:",i[2])
-			print ("Tanggal Lahir Pemain:",i[1])
+			print ("Nama Pemain:",User[i][0])
+			print ("Tinggi Pemain:",User[i][2])
+			print ("Tanggal Lahir Pemain:",User[i][1])
 			break
 	# Menampilkan pesan bahwan pemain tidak ditemukan
 	if found==False:

@@ -50,6 +50,7 @@ while (True):
         DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang = F01.load()
         # Menandakan sudah loading
         Loaded = True
+
     # exit/menghentikan program
     elif (Aksi == "exit"):
         # Jika file sudah diload sebelumnya
@@ -61,7 +62,7 @@ while (True):
     elif (Aksi == "login" or Aksi == "save" or Aksi == "cari" or Aksi == "best_wahana"):
         if not(Loaded):
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
-        else:
+        else: # File sudah diload
             if (Aksi == "login"):
                 IndexUser = F04.login(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
@@ -88,55 +89,80 @@ while (True):
     # Perintah-perintah yang hanya dapat diakses oleh admin
     # mendaftarkan pemain baru, pencarian pemelihat kritik dan saran, menambahkan wahana, topup saldo, atau melihat riwayat penggunaan wahana
     elif (Aksi == "signup" or Aksi == "cari_pemain" or Aksi == "lihat_laporan" or Aksi == "tambah_wahana" or Aksi == "topup" or Aksi == "riwayat_wahana" or Aksi == "tiket_pemain" or Aksi == "upgrade_gold"):
+
         if not(Loaded): # Jika file-file belum diload
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         elif not(Sudo): # Jika yang mengakses adalah pemain
             print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!") 
         elif not(LoggedIn): # Jika belum login
             print("Kamu belum login")
+
         elif (Sudo and LoggedIn and Loaded): # Jika yang mengakses adalah admin dan file sudah diload
+            # Mendaftarkan pemain baru
             if (Aksi == "signup"):
                 DatabaseUser, IndexUser = F03.signup(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
+            
+            # Mencari pemain
             elif (Aksi == "cari_pemain"):
                 F05.cari_pemain(DatabaseUser)
+            
+            # Melihat kritik dan saran
             elif (Aksi == "lihat_laporan"):
                 F11.lihatkritikdansaran(DatabaseKritikSaran)
+
+            # Menambahkan wahana baru
             elif (Aksi == "tambah_wahana"):
                 DatabaseWahana = F12.tambah_wahana(DatabaseWahana)
+
+            # Menambahkan saldo user (topup)
             elif (Aksi == "topup"):
                 InfoUser = F13.topup(InfoUser)
+
+            # Melihat riwayat penggunaan wahana
             elif (Aksi == "riwayat_wahana"):
                 F14.lihatriwayatwahana(DatabasePenggunaan)
+
+            # Melihat tiket yg dimiliki pemain
             elif (Aksi == "tiket_pemain"):
                 F15.tiket_pemain(DatabaseTiket,DatabaseWahana)
+                
+            # Mengupgrade status gold pemain
             elif (Aksi == "upgrade_gold"):
                 DatabaseUser = B02.up_gold(DatabaseUser)
 
 
     # Perintah-perintah yang hanya dapat diakses oleh pemain
     elif (Aksi == "beli_tiket" or Aksi == "main" or Aksi == "refund" or Aksi == "kritik_saran" or Aksi == "tiket_hilang"):
+
         if not(Loaded): # Jika file-file belum diload
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         elif Sudo: # Jika yang mengakses adalah admin
             print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!")
         elif not(LoggedIn): # Jika belum login
             print("Kamu belum login")
+
         elif (not(Sudo) and LoggedIn and Loaded): # Jika yang mengakses adalah pemain dan file sudah diload
+            # Membeli tiket
             if (Aksi == "beli_tiket"):
                 DatabaseTiket,DatabasePembelian = F07.beli_tiket(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana)
+            
+            # Menggunakan tiket
             elif (Aksi == "main"):
                 InfoUser,DatabaseTiket,DatabasePenggunaan,DatabaseWahana = F08.main(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabasePenggunaan)
+            
+            # Refund tiket
             elif (Aksi == "refund"):
                 InfoUser, DatabaseTiket, DatabasePembelian, DatabaseRefund =  F09.refund(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabaseRefund) 
+            
+            # Memberikan kritik/saran
             elif (Aksi == "kritik_saran"):
                 DatabaseKritikSaran = F10.KritikdanSaran(DatabaseKritikSaran, DatabaseWahana, InfoUser)
+                
+            # Melaporkan tiket hilang
             elif (Aksi == "tiket_hilang"):
                 DatabaseTiketHilang,DatabaseTiket =  B04.tiket_hilang(DatabaseTiket, DatabaseTiketHilang)
 
     # Jika command tidak ada
     else:
         print("Kamu tidak memiliki hak untuk mengakses command atau command tidak ada!")
-
-print("Sedang keluar dari program...")
-print("Sampai bertemu nanti!")

@@ -4,9 +4,12 @@
 # Program ini akan mencari wahana sesuai persyaratan yang diminta
 
 # KAMUS
+# CONST_VARS
 # cari : procedure
 
 # DEFINISI PROSEDUR
+import CONST_VARS
+
 def cari(Wahana):
 	# KAMUS LOKAL
 	# Umur, Tinggi, Found : integer
@@ -51,21 +54,13 @@ def cari(Wahana):
 	# Mencari wahana sesuai dengan persyaratan	
 	found=0	
 	print("Hasil pencarian: ")
-	for i in Wahana:
-		if Umur==i[3] and Tinggi==i[4]:
-			print(i[0],"|",i[1],"|",i[2])
+	for i in (CONST_VARS.N):
+		if Umur==Wahana[i][3] and Tinggi==Wahana[i][4]:
+			print(Wahana[i][0],"|",Wahana[i][1],"|",Wahana[i][2])
 			found+=1
-	# for i in Wahana:
-	# 	if Umur==i[3] and Tinggi==i[4]:
-	# 		print(i[0],"\t|\t",i[1],"\t|\t",i[2])
+	# for i in (CONST_VARS.N):
+	# 	if Umur==Wahana[i][3] and Tinggi==Wahana[i][4]:
+	# 		print(Wahana[i][0],"\t|\t",Wahana[i][1],"\t|\t",Wahana[i][2])
 	# 		found+=1
 	if found==0:
 		print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
-				
-# Wahana = [["Id","Nama","Harga","Batas_Umur","Batas_Tinggi"],
-#			["A","Aku",10,"anak-anak","tanpa batasan"],
-#			["B","Bait",20,"anak-anak",">=170 cm"],
-#			["C","Cicak",30,"dewasa",">=170 cm"],
-#			["D","Delman",40,"semua umur","tanpa batasan"]]
-
-# cari(Wahana)

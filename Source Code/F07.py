@@ -27,7 +27,6 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
         IndexWahana += 1
 
     if found == 0 :
-        print("Tidak ada wahana")
         return InfoUser,DatabaseTiket,DatabasePembelian
         
     # if InfoUser["StatusGold"] == False :

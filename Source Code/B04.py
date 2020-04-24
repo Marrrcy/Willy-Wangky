@@ -4,6 +4,7 @@
 # Program akan melaporkan kehilangan tiket dan mengganti statusnya menjadi tidak valid
 
 # KAMUS
+# CONST_VARS
 # tiket_hilang : function
 
 # DEFINISI FUNGSI
@@ -23,13 +24,13 @@ def tiket_hilang(KepemilikanTiket,TiketHilang):
 	Hilang = int(input("Jumlah tiket yang dihilangkan: "))
 	
 	# Mencari data yang sesuai dari database
-	for i in KepemilikanTiket:
-		if Users == i[0]:
-			if Id == i[1]:
+	for i in range(CONST_VARS.N):
+		if Users == KepemilikanTiket[i][0]:
+			if Id == KepemilikanTiket[i][1]:
 				if Hilang <= int(i[2]):
 					# Menambah database Tiket Hilang
 					# Inisialisasi dictionary
-					df = ['' for i in range(4)]
+					df = ['' for j in range(4)]
 					
 					# df = [(Users),(Tanggal),(Id),(Hilang)]
 					# Username,TanggalHilang,IdWahana,BanyakHilang
@@ -48,12 +49,12 @@ def tiket_hilang(KepemilikanTiket,TiketHilang):
 						Index += 1
 						row = TiketHilang[Index] # Next element
 
-					# row == CONST_VARS.MARK_5
+					# row == CONST_VARS.MARK_4
 					
 					TiketHilang[Index] = df
 
 					# Mengubah database Kepemilikan Tiket
-					i[2]=int(i[2])-(Hilang)
+					KepemilikanTiket[i][2]=int(KepemilikanTiket[i][2])-(Hilang)
 				
 					# Menyatakan berhasil mengubah data
 					print()
@@ -62,12 +63,3 @@ def tiket_hilang(KepemilikanTiket,TiketHilang):
 					return TiketHilang,KepemilikanTiket
 
 	return TiketHilang,KepemilikanTiket
-							
-					
-# KepemilikanTiket = [["Username","Id","Jumlah"],
-# 					["Keija","A",1],
-#					["Keija","B",2]]
-					
-# TiketHilang = [["Username","Tanggal","Id","Hilang"]]
-
-# tiket_hilang(KepemilikanTiket,TiketHilang)
