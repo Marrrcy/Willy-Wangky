@@ -107,7 +107,7 @@ while (True):
             elif (Aksi == "topup"):
                 InfoUser = F13.topup(InfoUser)
             elif (Aksi == "riwayat_wahana"):
-                F14.lihatriwayatwahana(DatabaseWahana)
+                F14.lihatriwayatwahana(DatabasePenggunaan)
             elif (Aksi == "tiket_pemain"):
                 F15.tiket_pemain(DatabaseTiket,DatabaseWahana)
             elif (Aksi == "upgrade_gold"):
