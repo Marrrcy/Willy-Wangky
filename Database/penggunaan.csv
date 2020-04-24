@@ -1,6 +1,6 @@
-Username,TanggalPenggunaan,IdWahana,JumlahTiket
-a,01/01/2000,AAA001,2
-a,01/02/2200,AAA001,4
+Username,TanggalPembelian,IdWahana,JumlahTiket
+a,24/04/2020,AAA003,10
+-,-,-,-
 -,-,-,-
 -,-,-,-
 -,-,-,-

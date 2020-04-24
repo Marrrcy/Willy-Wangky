@@ -5,15 +5,13 @@
 import CONST_VARS
 from panjangArray import panjangArray
 
-def refund (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana):
+def refund (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana, DatabaseRefund):
     #Menerima informasi user
     IdWahana = input("Masukkan ID wahana: ")
     TanggalPembelian = input("Masukkan tanggal hari ini: ")
     JumlahTiket = int(input("Jumlah tiket yang di-refund: "))
 
-    # df_tiket = {}
     df_tiket = ['' for i in range(3)]
-    # df_pembelian = {}
     df_pembelian = ['' for i in range(4)]
 
     found = 0
@@ -26,69 +24,105 @@ def refund (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana):
 
     if found == 0 :
         print("Tidak ada wahana")
-        return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana
+        return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseRefund
         
 
-    Umur = int(TanggalPembelian[6:9:])-int(InfoUser[1][6:9:])
-    Tinggi = 170 if (wahana[4] == ">=170 cm") else 0
-    if InfoUser[7] == "False" :
-        if (Umur >= int(wahana[IndexWahana][3]) and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - int(wahana[IndexWahana][2]) * JumlahTiket >= 0)):
-            # Uang refund adalah 80% dari harga tiket asli
-            InfoUser[6] = str(int(InfoUser[6]) + 0.8 * int(wahana[2]) * JumlahTiket)
-            int(DatabaseTiket[2]) = int(DatabaseTiket[2]) - JumlahTiket
-            print("Uang refund sudah kami berikan pada akun Anda.")
-            break
+    found = False
+    if InfoUser[7] == "FALSE":
+        index = 0
+        for row in DatabasePembelian:
+            if (row[0] == InfoUser[3] and row[1] == TanggalPembelian and row[2] == IdWahana):
+                found = True
+                # Uang refund adalah 80% dari harga tiket asli
+                InfoUser[6] = int(int(InfoUser[6]) + 0.8 * int(wahana[2]) * JumlahTiket)
+                DatabaseTiket[index][2] = int(DatabaseTiket[index][2]) - JumlahTiket
+                DatabasePembelian[index][3] = int(DatabasePembelian[index][3]) - JumlahTiket
+                print("Uang refund sudah kami berikan pada akun Anda.")
+                break
+            index += 1
 
-        else :
+        if not(found):
             print("Anda tidak memiliki tiket terkait.")
-            return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana
+            return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseRefund
 
-    else:
-        if (Umur >= int(wahana[IndexWahana][3]) and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - 0.5 * int(wahana[IndexWahana][2]) * JumlahTiket >= 0)):
-            print("Uang refund sudah kami berikan pada akun Anda.")
-            # Uang refund adalah 80% dari harga tiket asli
-            InfoUser[6] = str(int(InfoUser[6]) + 0.8 * 0.5 * int(wahana[IndexWahana][2]) * JumlahTiket)
-            int(DatabaseTiket[2]) = int(DatabaseTiket[2]) - JumlahTiket
-            break
-        else :
+    else: # gold user
+        index = 0
+        for row in DatabasePembelian:
+            if (row[0] == InfoUser[3] and row[1] == TanggalPembelian and row[2] == IdWahana):
+                # Uang refund adalah 80% dari harga tiket asli
+                found = True
+                InfoUser[6] = int(int(InfoUser[6]) + 0.8 * 0.5 * int(wahana[2]) * JumlahTiket)
+                DatabaseTiket[index][2] = int(DatabaseTiket[index][2]) - JumlahTiket
+                DatabasePembelian[index][3] = int(DatabasePembelian[index][3]) - JumlahTiket
+                print("Uang refund sudah kami berikan pada akun Anda.")
+                break
+            index += 1
+
+        if not(found):
             print("Anda tidak memiliki tiket terkait.")
-            return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana
+            return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseRefund
+
+    if (found):
+        df_refund =(InfoUser[3], TanggalPembelian, IdWahana, JumlahTiket)
+
+        IdRfd = 1
+        row = DatabaseRefund[IdRfd]
+
+        while row != CONST_VARS.MARK_4:
+            IdRfd += 1
+            row = DatabaseRefund[IdRfd] # Next element
+
+        DatabaseRefund[IdRfd] = df_refund
+
+        return InfoUser, DatabaseTiket,DatabasePembelian, DatabaseRefund
+    # Redundant (mubazir)
+    else :
+        return InfoUser, DatabaseTiket,DatabasePembelian, DatabaseRefund
+            
         
-    # Mendapatkan index untuk entri baru di database tiket
-    IndexTiket = 1
-    row = DatabaseTiket[IndexTiket] # First element
-    
-    while (row != CONST_VARS.MARK_3):
-        IndexTiket += 1
-        row = DatabaseTiket[IndexTiket] # Next element
-    
-    # row == CONST_VARS.MARK_8
+##    # Mendapatkan index untuk entri baru di database tiket
+##    IndexTiket = 1
+##    row = DatabaseTiket[IndexTiket] # First element
+##    
+##    while (row != CONST_VARS.MARK_3):
+##        IndexTiket += 1
+##        row = DatabaseTiket[IndexTiket] # Next element
+##    
+##    # row == CONST_VARS.MARK_8
+##
+   # Redundant(Mubazir)
+   # Mendapatkan index untuk entri baru di database pembelian
+   # IndexRfd = 1
+   # row = DatabaseRefund[IndexRfd] # First element
+   
+   # while (row != CONST_VARS.MARK_4):
+       # IndexRfd += 1
+       # row = DatabaseRefund[IndexRfd] # Next element
+   
+   # row == CONST_VARS.MARK_4
+            
 
-    # Mendapatkan index untuk entri baru di database pembelian
-    IndexPmb = 1
-    row = DatabasePembelian[IndexPmb] # First element
-    
-    while (row != CONST_VARS.MARK_4):
-        IndexPmb += 1
-        row = DatabasePembelian[IndexPmb] # Next element
-    
-    # row == CONST_VARS.MARK_8
-                                                                    
+    df_refund[0] = InfoUser[3]
+    df_refund[1] = TanggalRefund
+    df_refund[2] = IdWahana
+    df_refund[3] = JumlahTiket
     # Menambahkan data baru ke database tiket sementara
-    df_tiket[0] = InfoUser[3]
-    df_tiket[1] = IdWahana
-    df_tiket[2] = JumlahTiket
+    # df_tiket[0] = InfoUser[3]
+    # df_tiket[1] = IdWahana
+    # df_tiket[2] = JumlahTiket
     
     # Menambahkan data baru ke database pembelian sementara
-    df_pembelian[0] = InfoUser[3]
-    df_pembelian[1] = TanggalPembelian
-    df_pembelian[2] = IdWahana
-    df_pembelian[3] = JumlahTiket
+    # df_pembelian[0] = InfoUser[3]
+    # df_pembelian[1] = TanggalPembelian
+    # df_pembelian[2] = IdWahana
+    # df_pembelian[3] = JumlahTiket
 
+    # menambahkan data bar ke database refund
+    DatabaseRefund[IdRfd] = df_refund
     # Menambahkan data baru ke database tiket 
-    DatabaseTiket[IndexTiket] = df_tiket
+    # DatabaseTiket[IndexTiket] = df_tiket
 
     # Menambahkan data baru ke database pembelian 
-    DatabasePembelian[IndexPmb] = df_pembelian
+    # DatabasePembelian[IndexPmb] = df_pembelian
 
-    return DatabaseTiket,DatabasePembelian
+    return InfoUser, DatabaseTiket,DatabasePembelian, DatabaseRefund

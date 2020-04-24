@@ -5,7 +5,7 @@
 
 # TODO
 # Komentar
-# Aksi == cari, lihat_laporan, beli_tiket, main, refund, best_wahana
+# Aksi == best_wahana
 
 # KAMUS
 
@@ -26,7 +26,7 @@
 # ALGORITMA
 # load library
 import CONST_VARS
-import B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15,F16
+import B02,B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15,F16
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -86,8 +86,8 @@ while (True):
                 B03.bestwahana(DatabaseWahana)
 
     # Perintah-perintah yang hanya dapat diakses oleh admin
-    # mendaftarkan pemain baru, pencarian pemain, melihat kritik dan saran, menambahkan wahana, topup saldo, atau melihat riwayat penggunaan wahana
-    elif (Aksi == "signup" or Aksi == "cari_pemain" or Aksi == "lihat_laporan" or Aksi == "tambah_wahana" or Aksi == "topup" or Aksi == "riwayat_wahana" or Aksi == "tiket_pemain"):
+    # mendaftarkan pemain baru, pencarian pemelihat kritik dan saran, menambahkan wahana, topup saldo, atau melihat riwayat penggunaan wahana
+    elif (Aksi == "signup" or Aksi == "cari_pemain" or Aksi == "lihat_laporan" or Aksi == "tambah_wahana" or Aksi == "topup" or Aksi == "riwayat_wahana" or Aksi == "tiket_pemain" or Aksi == "upgrade_gold"):
         if not(Loaded): # Jika file-file belum diload
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         elif not(Sudo): # Jika yang mengakses adalah pemain
@@ -101,15 +101,18 @@ while (True):
             elif (Aksi == "cari_pemain"):
                 F05.cari_pemain(DatabaseUser)
             elif (Aksi == "lihat_laporan"):
-                None
+                F11.lihatkritikdansaran(DatabaseKritikSaran)
             elif (Aksi == "tambah_wahana"):
                 DatabaseWahana = F12.tambah_wahana(DatabaseWahana)
             elif (Aksi == "topup"):
-                None
+                InfoUser = F13.topup(InfoUser)
             elif (Aksi == "riwayat_wahana"):
                 F14.lihatriwayatwahana(DatabaseWahana)
             elif (Aksi == "tiket_pemain"):
                 F15.tiket_pemain(DatabaseTiket,DatabaseWahana)
+            elif (Aksi == "upgrade_gold"):
+                DatabaseUser = B02.up_gold(DatabaseUser)
+
 
     # Perintah-perintah yang hanya dapat diakses oleh pemain
     elif (Aksi == "beli_tiket" or Aksi == "main" or Aksi == "refund" or Aksi == "kritik_saran" or Aksi == "tiket_hilang"):
@@ -123,9 +126,9 @@ while (True):
             if (Aksi == "beli_tiket"):
                 DatabaseTiket,DatabasePembelian = F07.beli_tiket(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana)
             elif (Aksi == "main"):
-                InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana = F08.main(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana)
+                InfoUser,DatabaseTiket,DatabasePenggunaan,DatabaseWahana = F08.main(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabasePenggunaan)
             elif (Aksi == "refund"):
-                None
+                InfoUser, DatabaseTiket, DatabasePembelian, DatabaseRefund =  F09.refund(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabaseRefund) 
             elif (Aksi == "kritik_saran"):
                 DatabaseKritikSaran = F10.KritikdanSaran(DatabaseKritikSaran, DatabaseWahana, InfoUser)
             elif (Aksi == "tiket_hilang"):

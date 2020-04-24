@@ -44,7 +44,6 @@ def tambah_wahana(Wahana):
 	# row == CONST_VARS.MARK_5
 
 	Wahana[Index] = df
-	print(Wahana)
 
 	return Wahana
 	

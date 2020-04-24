@@ -6,46 +6,31 @@
 import CONST_VARS
 from panjangArray import panjangArray
 
-def topup (InfoUser):
+def topup (InfoUser,DatabaseTiket,DatabasePembelian):
     #Menerima informasi user
     Username = input("Masukkan username: ")
     Saldo = int(input("Masukkan saldo yang di-top up: "))
 
-    df_user = ['' for i in range(8)]
-
     found = False
-    for i in InfoUser[0] :
-        if(InfoUser[0] == Username):
+    IndexUser = 0
+    for user in InfoUser:
+        if user[3] == Username:
             found = True
-            if(InfoUser[0] == Username):
-                InfoUser[6] = str(int(InfoUser[6] + Saldo))
-                print("Top up berhasil. Saldo",Username,"bertambah menjadi",InfoUser[6])
-                break
-        else:
-            return InfoUser
+            InfoUser[6] = str(int(InfoUser[6]) + Saldo)
+            print("Top up berhasil. Saldo",Username,"bertambah menjadi",InfoUser[6])
+            break
+        IndexUser += 1
+        
     if not found :
         print("Tidak ada username")
+        return InfoUser,DatabaseTiket,DatabasePembelian
         
     # Mendapatkan index pemain baru
     IndexUser = 1
-    row = User[IndexUser] # First element
+    row = InfoUser[IndexUser] # First element
 
-    while (row != CONST_VARS.MARK_8):
+    while (row != CONST_VARS.MARK_4):
         IndexUser += 1
-        row = User[IndexUser] # Next element
+        row = InfoUser[IndexUser] # Next element
 
     return (InfoUser,DatabaseTiket,DatabasePembelian)
-
-    # Menambahkan data saldo baru ke database user
-    df_user[0] = Nama
-    df_user[1] = TanggalPembelian
-    df_user[2] = TinggiBadan
-    df_user[3] = Username
-    df_user[4] = Password
-    df_user[5] = Role
-    df_user[6] = Saldo
-    df_user[7] = StatusGold
-    
-
-    # Menambahkan data baru ke database user
-    InfoUser[Saldo] = df_user

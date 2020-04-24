@@ -8,23 +8,24 @@
 
 # DEFINISI PROSEDUR
 def tiket_pemain (KepemilikanTiket,Wahana):
-	# KAMUS LOKAL
-	# Users : string
+    # KAMUS LOKAL
+    # Users : string
+
+    # ALGORITMA
+    # Menginput username
+    Users = input("Masukkan username: ")
 	
-	# ALGORITMA
-	# Menginput username
-	Users = input("Masukkan username: ")
-	
-	# Menampilkan informasi tiket
-	print("Riwayat:")
-	for i in KepemilikanTiket:
-		if Users == i[0]:
-			Id = i[1]
-			Jumlah = i[2]
-			for j in Wahana:
-				if Id==j[0]:
-					Nama = j[1]
-					print((Id),"\t|\t",(Nama),"\t|\t",(Jumlah))
+    # Menampilkan informasi tiket
+    print("Riwayat:")
+    for i in KepemilikanTiket:
+        if Users == i[0]:
+            Id = i[1]
+            Jumlah = i[2]
+            for j in Wahana:
+                if Id==j[0]:
+                    Nama = j[1]
+                    if (int(Jumlah) > 0):
+                        print((Id),"\t|\t",(Nama),"\t|\t",(Jumlah))
 	
 
 # KepemilikanTiket = [["Username","Id","Jumlah"],

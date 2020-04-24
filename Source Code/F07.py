@@ -28,29 +28,28 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
 
     if found == 0 :
         print("Tidak ada wahana")
-        return DatabaseTiket,DatabasePembelian
+        return InfoUser,DatabaseTiket,DatabasePembelian
         
     # if InfoUser["StatusGold"] == False :
     Umur = int(TanggalPembelian[6:10:])-int(InfoUser[1][6:10:])
     BatasUmur = 0 if (wahana[3] == "semua umur") else 17
     Tinggi = 170 if (wahana[4] == ">=170 cm") else 0
-    if InfoUser[7] == "False" :
+    if InfoUser[7] == "FALSE":
         # if (int(InfoUser["Umur"]) >= int(wahana["BatasUmur"]) and int(InfoUser["Tinggi"]) >= int(wahana["BatasTinggu"]) and  (int(InfoUser["Saldo"]) - wahana["Harga"] * JumlahTiket >= 0)):
         if ((Umur >= BatasUmur) and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - int(wahana[2]) * JumlahTiket >= 0)):
             InfoUser[6] = str(int(InfoUser[6]) - int(wahana[2]) * JumlahTiket)
-            print("Selamat bersenang-senang di Almond’s Charm.")
-
+            print("Selamat bersenang-senang di {}".format(wahana[1]))
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
-            return DatabaseTiket,DatabasePembelian
+            return InfoUser, DatabaseTiket,DatabasePembelian
 
     else:
-        if (Umur >= wahana and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - 0.5 * int(wahana[2]) * JumlahTiket >= 0)):
-            print("Selamat bersenang-senang di Almond’s Charm")
+        if (Umur >= BatasUmur and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - 0.5 * int(wahana[2]) * JumlahTiket >= 0)):
+            print("Selamat bersenang-senang di {}".format(wahana[1]))
             InfoUser[6] = str(int(InfoUser[6]) - 0.5 * int(wahana[2]) * JumlahTiket)
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
-            return DatabaseTiket,DatabasePembelian
+            return InfoUser, DatabaseTiket,DatabasePembelian
     
     # Mendapatkan index untuk entri baru di database tiket
     IndexTiket = 1
@@ -89,4 +88,4 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
     # Menambahkan data baru ke database pembelian 
     DatabasePembelian[IndexPmb] = df_pembelian
 
-    return DatabaseTiket,DatabasePembelian
+    return InfoUser,DatabaseTiket,DatabasePembelian

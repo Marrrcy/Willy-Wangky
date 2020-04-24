@@ -10,7 +10,7 @@
 import CONST_VARS
 from panjangArray import panjangArray
 
-def main (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana):
+def main (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabasePenggunaan):
     # Kamus
     # IdWahana : String
     # TanggalPembelian : String
@@ -21,33 +21,28 @@ def main (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana):
     #Menerima informasi user
     IdWahana = input("Masukkan ID wahana: ")
     TanggalPembelian = input("Masukkan tanggal hari ini: ")
-    JumlahTiket = int(input("Jumlah tiket yang dibeli: "))
+    JumlahTiket = int(input("Jumlah tiket yang digunakan: "))
 
-    # df_tiket = {}
     df_tiket = ['' for i in range(3)]
-    # df_pembelian = {}
-    df_pembelian = ['' for i in range(4)]
+    df_penggunaan = ['' for i in range(4)]
 
     found = False
-    IndexWahana = 0
-    for wahana in DatabaseWahana :
-        if(wahana[0] == IdWahana):
-            Umur = int(TanggalPembelian[6:9:])-int(InfoUser[1][6:9:])
-            Tinggi = 170 if (wahana[4] == ">=170 cm") else 0
-            found = True
-            for IndexWahana in range(CONST_VARS.N):
-                if JumlahTiket <= DatabaseTiket[2]:
-                    print("Terima kasih telah bermain.")
-                    DatabaseTiket[2] = DataBaseTiket[2] - JumlahTiket
-                    break
-                else:
-                    print("Tiket Anda tidak valid dalam sistem kami")
-                    break
-        IndexWahana += 1
+    IndexTiket = 0
+    for tiket in DatabaseTiket:
+        if(tiket[1] == IdWahana and tiket[0] == InfoUser[3]):
+            # Umur = int(TanggalPembelian[6:10:])-int(InfoUser[1][6:10:])
+            # Tinggi = 170 if (tiket[4] == ">=170 cm") else 0
+            if JumlahTiket <= int(tiket[2]):
+                found = True
+                print("Terima kasih telah bermain.")
+                tiket[2] = str(int(tiket[2]) - JumlahTiket)
+                break
+            
+        IndexTiket += 1
 
     if found == False :
-        print("Tidak ada wahana")
-        return InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana
+        print("Tiket Anda tidak valid dalam sistem kami atau wahana tidak ditemukan")
+        return InfoUser,DatabaseTiket,DatabasePenggunaan, DatabaseWahana
     
     # Mendapatkan index untuk entri baru di database tiket
     IndexTiket = 1
@@ -57,33 +52,25 @@ def main (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana):
         IndexTiket += 1
         row = DatabaseTiket[IndexTiket] # Next element
     
-    # row == CONST_VARS.MARK_8
+    # row == CONST_VARS.MARK_3
 
     # Mendapatkan index untuk entri baru di database pembelian
     IndexPmb = 1
-    row = DatabasePembelian[IndexPmb] # First element
+    row = DatabasePenggunaan[IndexPmb] # First element
     
     while (row != CONST_VARS.MARK_4):
         IndexPmb += 1
-        row = DatabasePembelian[IndexPmb] # Next element
+        row = DatabasePenggunaan[IndexPmb] # Next element
     
-    # row == CONST_VARS.MARK_8
-                                                                    
-    # Menambahkan data baru ke database tiket sementara
-    df_tiket[0] = InfoUser[3]
-    df_tiket[1] = IdWahana
-    df_tiket[2] = JumlahTiket
+    # row == CONST_VARS.MARK_4
     
     # Menambahkan data baru ke database pembelian sementara
-    df_pembelian[0] = InfoUser[3]
-    df_pembelian[1] = TanggalPembelian
-    df_pembelian[2] = IdWahana
-    df_pembelian[3] = JumlahTiket
-
-    # Menambahkan data baru ke database tiket 
-    DatabaseTiket[IndexTiket] = df_tiket
+    df_penggunaan[0] = InfoUser[3]
+    df_penggunaan[1] = TanggalPembelian
+    df_penggunaan[2] = IdWahana
+    df_penggunaan[3] = JumlahTiket
 
     # Menambahkan data baru ke database pembelian 
-    DatabasePembelian[IndexPmb] = df_pembelian
+    DatabasePenggunaan[IndexPmb] = df_penggunaan
 
-    return DatabaseTiket,DatabasePembelian
+    return InfoUser,DatabaseTiket,DatabasePenggunaan,DatabaseWahana

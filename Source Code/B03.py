@@ -6,6 +6,7 @@
 #Kamus
 #jumlahtiket = di file eksternal yang menyatakan jumlah tiket yang terjual per wahana
 #Algoritma
+import CONST_VARS
 tiketterjual = []
 tiketterjualterurut = []
 tiketterjual_terurut = []
@@ -21,13 +22,13 @@ def bestwahana (wahana):
     tiketterjual_terurut = sorted(tiketterjual)
 
     #mengurutkan data berdasarkan urutan di array tiketterjual
-    for i in range (1,1000):
+    for i in range (1,CONST_VARS.N):
         for row in range (Wahana):
             if tiketterjual_terurut[i] == row['jumlahtiket']:
                 tiketterjual_terurut[i] = row
 
     #menampilkan 3 wahana terbaik berdasarkan jumlah tiket yang terjual
-    for i in range (1000,997,-1):
+    for i in range (CONST_VARS.N-1,CONST_VARS.N-4,-1):
         return print(tiketterjual_terurut[i])
 
 

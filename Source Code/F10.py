@@ -17,7 +17,7 @@ def KritikdanSaran (Kritiksaran,Wahana,InfoUser):
     Id_Wahana = input('Masukkan ID Wahana: ')
     tanggal_laporan = input('Masukkan tanggal pelaporan: ')
     kritik_saran = input('Kritik/saran Anda: ')
-    Username = InfoUser[0]
+    Username = InfoUser[3]
 
     # Bagian output
     print('Kritik dan saran Anda kami terima')

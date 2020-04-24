@@ -5,12 +5,13 @@
 #kamus
 #Id_wahana : alfanumerik
 
+from sort import insertion_sort
+import CONST_VARS
 idwahana = []
 idwahanaterurut = []
 idwahana_terurut = []
 
 #algoritma
-import CONST_VARS
 def lihatkritikdansaran (wahana):
     Id_wahana = input('Masukkan ID Wahana: ')
 
@@ -23,7 +24,7 @@ def lihatkritikdansaran (wahana):
     idwahanaterurut = idwahana
 
     #mengurutkan data secara alfabetis
-    idwahana_terurut = sorted(idwahanaterurut)
+    idwahana_terurut = insertion_sort((idwahanaterurut),2)
 
     #mencari kritik dan saran sesuai wahana
     for i in range (CONST_VARS.N):
