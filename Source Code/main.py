@@ -24,7 +24,7 @@
 # ALGORITMA
 # load library
 import CONST_VARS
-import B02,B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F13,F14,F15,F16
+import B02,B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F09,F10,F11,F12,F13,F14,F15,F16
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -40,6 +40,7 @@ InfoUser = ["" for i in range(8)]
 print("Apa yang mau kamu lakukan?\n$ load")
 # Meload file untuk pertama kali
 DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang = F01.load()
+
 # Menandakan sudah loading
 Loaded = True
 
@@ -73,6 +74,7 @@ while (True):
     elif (Aksi == "exit"):
         print("Sampai bertemu di lain waktu {}!".format(InfoUser[0]))
         # Jika file sudah diload sebelumnya
+        DatabaseUser[IndexUser] = InfoUser
         F16.exit(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang,Loaded)
         break
 
@@ -94,6 +96,7 @@ while (True):
 
             # save/menyimpan database
             elif (Aksi == "save"):
+                DatabaseUser[IndexUser] = InfoUser
                 F03.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
             
             # Mencari wahana
@@ -163,7 +166,7 @@ while (True):
         elif (not(Sudo) and LoggedIn and Loaded): # Jika yang mengakses adalah pemain dan file sudah diload
             # Membeli tiket
             if (Aksi == "beli_tiket"):
-                DatabaseTiket,DatabasePembelian = F07.beli_tiket(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana)
+                InfoUser,DatabaseTiket,DatabasePembelian = F07.beli_tiket(InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana)
             
             # Menggunakan tiket
             elif (Aksi == "main"):

@@ -149,8 +149,8 @@ def load():
 
     i = 0 # First element
 
-    for j in range(CONST_VARS.N): 
-        row = next(csvPembelian)
+    for j in range(CONST_VARS.N):
+        row = next(csvReader_Pembelian)
         Pembelian[i] = row # Memproses element
         i += 1 # Next element
 
@@ -165,7 +165,7 @@ def load():
     i = 0 # First element
 
     for j in range(CONST_VARS.N): 
-        row = next(csvPenggunaan)
+        row = next(csvReader_Penggunaan)
         Penggunaan[i] = row # Memproses element
         i += 1 # Next element
 

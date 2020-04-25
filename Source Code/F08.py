@@ -28,7 +28,8 @@ def main (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabasePenggu
 
     found = False
     IndexTiket = 0
-    for tiket in DatabaseTiket:
+    for k in range(CONST_VARS.N):
+        tiket = DatabaseTiket[k]
         if(tiket[1] == IdWahana and tiket[0] == InfoUser[3]):
             # Umur = int(TanggalPembelian[6:10:])-int(InfoUser[1][6:10:])
             # Tinggi = 170 if (tiket[4] == ">=170 cm") else 0

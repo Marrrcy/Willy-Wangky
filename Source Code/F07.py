@@ -11,44 +11,38 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
     TanggalPembelian = input("Masukkan tanggal hari ini: ")
     JumlahTiket = int(input("Jumlah tiket yang dibeli: "))
 
-    # df_tiket = {}
     df_tiket = ['' for i in range(3)]
-    # df_pembelian = {}
     df_pembelian = ['' for i in range(4)]
 
     found = 0
     IndexWahana = 0
-    for wahana in DatabaseWahana :
-        # if(wahana["IdWahana"] == IdWahana):
-        if(wahana[0] == IdWahana):
+    for i in range (CONST_VARS.N):
+        row = DatabaseWahana[i]
+        if(row[0] == IdWahana):
             found += 1
             break
-            # break woiiii
         IndexWahana += 1
-
-    if found == 0 :
-        return InfoUser,DatabaseTiket,DatabasePembelian
         
-    # if InfoUser["StatusGold"] == False :
+    wahana = DatabaseWahana[IndexWahana]
     Umur = int(TanggalPembelian[6:10:])-int(InfoUser[1][6:10:])
-    BatasUmur = 0 if (wahana[3] == "semua umur") else 17
     Tinggi = 170 if (wahana[4] == ">=170 cm") else 0
-    if InfoUser[7] == "FALSE":
-        # if (int(InfoUser["Umur"]) >= int(wahana["BatasUmur"]) and int(InfoUser["Tinggi"]) >= int(wahana["BatasTinggu"]) and  (int(InfoUser["Saldo"]) - wahana["Harga"] * JumlahTiket >= 0)):
-        if ((Umur >= BatasUmur) and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - int(wahana[2]) * JumlahTiket >= 0)):
+    BatasUmur = 0 if (wahana[3] == "semua umur") else 17
+    if InfoUser[7] == "False" : #status golden account = "FALSE"
+        if (Umur >= BatasUmur and int(InfoUser[2]) >= Tinggi and  int(InfoUser[6]) - int(wahana[2]) * JumlahTiket >= 0):
             InfoUser[6] = str(int(InfoUser[6]) - int(wahana[2]) * JumlahTiket)
-            print("Selamat bersenang-senang di {}".format(wahana[1]))
-        else :
-            print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
-            return InfoUser, DatabaseTiket,DatabasePembelian
+            print("Selamat bersenang-senang di {}.".format(wahana[1]))
 
-    else:
-        if (Umur >= BatasUmur and int(InfoUser[2]) >= Tinggi and  (int(InfoUser[6]) - 0.5 * int(wahana[2]) * JumlahTiket >= 0)):
-            print("Selamat bersenang-senang di {}".format(wahana[1]))
-            InfoUser[6] = str(int(InfoUser[6]) - 0.5 * int(wahana[2]) * JumlahTiket)
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
-            return InfoUser, DatabaseTiket,DatabasePembelian
+            return InfoUser,DatabaseTiket,DatabasePembelian
+
+    else: #status golden account = "TRUE"
+        if (Umur >= BatasUmur and int(InfoUser[2]) >= Tinggi and  int(int(InfoUser[6]) - 0.5 * int(wahana[2]) * JumlahTiket >= 0)):
+            print("Selamat bersenang-senang di {}.".format(wahana[1]))
+            InfoUser[6] = int(int(InfoUser[6]) - int(0.5 * int(wahana[2])) * JumlahTiket)
+        else :
+            print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
+            return InfoUser,DatabaseTiket,DatabasePembelian
     
     # Mendapatkan index untuk entri baru di database tiket
     IndexTiket = 1

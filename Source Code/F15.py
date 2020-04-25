@@ -25,6 +25,6 @@ def tiket_pemain (KepemilikanTiket,Wahana):
 			Id = KepemilikanTiket[i][1]
 			Jumlah = KepemilikanTiket[i][2]
 			for j in range(CONST_VARS.N):
-				if Id==Wahana[j][0] and Jumlah != "0":
+				if Id==Wahana[j][0] and (Jumlah != "0" or Jumlah != 0):
 					Nama = Wahana[j][1]
 					print((Id),"\t|\t",(Nama),"\t|\t",(Jumlah))
