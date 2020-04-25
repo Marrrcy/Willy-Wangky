@@ -105,7 +105,7 @@ while (True):
             
             # Melihat wahana terbaik
             elif (Aksi == "best_wahana"):
-                B03.bestwahana(DatabaseWahana)
+                B03.bestwahana(DatabasePembelian, DatabaseWahana)
 
     # Perintah-perintah yang hanya dapat diakses oleh admin
     # mendaftarkan pemain baru, pencarian pemelihat kritik dan saran, menambahkan wahana, topup saldo, atau melihat riwayat penggunaan wahana
