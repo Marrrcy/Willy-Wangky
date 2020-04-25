@@ -1,9 +1,9 @@
 #Clarisa Natalia Edelin 16519420
-#F14 Melihat riwayat penggunaan DatabaseWahana
-#Admin dapat melihat riwayat penggunaan DatabaseWahana
+#F14 Melihat riwayat penggunaan wahana
+#Admin dapat melihat riwayat penggunaan wahana
 
 #Kamus
-import CONST_VARS
+import sort, CONST_VARS
 
 #Algoritma
 def lihatriwayatwahana (DatabasePenggunaan):
@@ -14,7 +14,8 @@ def lihatriwayatwahana (DatabasePenggunaan):
 
     #bagian cek DatabasePenggunaan
     idx = 0
-    for row in DatabasePenggunaan:
+    for i in range(CONST_VARS.N):
+        row = DatabasePenggunaan[i]
         if Id_wahana == row[2]: #kalau sama
             Id_DatabaseWahana_ygsama[idx] = row #dimasukin ke array baru
             idx += 1

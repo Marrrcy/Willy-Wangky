@@ -17,14 +17,15 @@ def KritikdanSaran (Kritiksaran,Wahana,InfoUser):
     Id_Wahana = input('Masukkan ID Wahana: ')
     tanggal_laporan = input('Masukkan tanggal pelaporan: ')
     kritik_saran = input('Kritik/saran Anda: ')
-    Username = InfoUser[3]
+    Username = InfoUser[0]
 
     # Bagian output
     print('Kritik dan saran Anda kami terima')
 
     # Mencari bagian database yang kosong
     i = 0
-    for row in Kritiksaran:
+    for j  in range(CONST_VARS.N):
+        row = Kritiksaran[j]
         if (row == CONST_VARS.MARK_4):
             index = i
             break
@@ -39,5 +40,4 @@ def KritikdanSaran (Kritiksaran,Wahana,InfoUser):
     Kritiksaran[index][3] = kritik_saran  #IsiKritik urutan ke - 3
 
     return Kritiksaran
-
 

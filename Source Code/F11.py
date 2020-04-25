@@ -5,29 +5,32 @@
 #kamus
 #Id_wahana : alfanumerik
 
-from sort import insertion_sort
+#idwahana = []
+#idwahanaterurut = []
+#idwahana_terurut = []
 import CONST_VARS
-idwahana = ['' for i in range(CONST_VARS.N)]
-idwahanaterurut = ['' for i in range(CONST_VARS.N)]
-idwahana_terurut = ['' for i in range(CONST_VARS.N)]
+from sort import insertion_sort
 
 #algoritma
 def lihatkritikdansaran (wahana):
-    Id_wahana = input('Masukkan ID Wahana: ')
+    #Id_wahana = input('Masukkan ID Wahana: ')
+
+    # mengurutkan data secara alfabetis
+    idwahana_terurut = insertion_sort((wahana[1::]),2)
 
     print('Riwayat: ')
 
     #menginput Id_wahana dari kolom file ke array baru
-    for i in range (CONST_VARS.N):
-        idwahana [i] = wahana[i]
+    #for i in range (1000):
+     #   idwahana [i] = user[i]['id_wahana']
 
-    idwahanaterurut = idwahana
-
-    #mengurutkan data secara alfabetis
-    idwahana_terurut = insertion_sort((idwahanaterurut),2)
+    #idwahanaterurut = idwahana
 
     #mencari kritik dan saran sesuai wahana
-    for i in range (CONST_VARS.N):
-        if Id_wahana == idwahana_terurut[i][2]:
-            print(Id_wahana + "\t|\t" + idwahana_terurut[i][1] + '\t|\t' + idwahana_terurut[i][0] + '\t|\t' + idwahana_terurut[i][3])
+    for i in range(CONST_VARS.N):
+        row = idwahana_terurut[i]
 
+        if (row == CONST_VARS.MARK_4):
+            break
+
+        print(row[2] + '\t|\t' + row[1] + '\t|\t' + row[0] + '\t|\t' + row[3])
