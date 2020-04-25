@@ -32,7 +32,8 @@ def login(User):
 
     # Mengisi UsernameList
     i = 1 # first element
-    for row in User:
+    for j in range(CONST_VARS.N):
+        row = User[j]
         UsernameList[i] = row[3]
         PasswordList[i] = row[4]
         i += 1 # next element
@@ -53,7 +54,6 @@ def login(User):
                 if (B01.check_password(Password,PasswordList[j])): # Pasangan username dan password benar
                     LoggedIn = True
                     IndexUser = j-1
-                break
         
         # Jika username tidak ditemukan atau pasangan username dan password tidak cocok
         if (not(LoggedIn)):

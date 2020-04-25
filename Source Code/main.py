@@ -53,9 +53,9 @@ while (True):
 
     # exit/menghentikan program
     elif (Aksi == "exit"):
+        print("Sampai bertemu di lain waktu {}!".format(InfoUser[0]))
         # Jika file sudah diload sebelumnya
         F16.exit(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang,Loaded)
-        print("Sampai bertemu di lain waktu{}!".format(InfoUser[0]))
         break
 
     # Menyimpan, login, atau mencari wahana

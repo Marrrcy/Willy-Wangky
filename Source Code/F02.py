@@ -101,7 +101,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_User = csv.writer(csvUser) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (User):
+    for i in range(CONST_VARS.N): 
+        row = User[i] 
         csvWriter_User.writerow(row)
 
     # Ketika file sudah habis
@@ -113,7 +114,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_Wahana = csv.writer(csvWahana) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (Wahana):
+    for i in range(CONST_VARS.N): 
+        row = Wahana[i]
         csvWriter_Wahana.writerow(row)
 
     # Ketika file sudah habis
@@ -125,7 +127,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_Pembelian = csv.writer(csvPembelian) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (Pembelian):
+    for i in range(CONST_VARS.N): 
+        row = Pembelian[i]
         csvWriter_Pembelian.writerow(row)
 
     # Ketika file sudah habis
@@ -137,7 +140,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_Penggunaan = csv.writer(csvPenggunaan) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (Penggunaan):
+    for i in range(CONST_VARS.N): 
+        row = Penggunaan[i]
         csvWriter_Penggunaan.writerow(row)
 
     # Ketika file sudah habis
@@ -149,7 +153,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_Tiket = csv.writer(csvTiket) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (Tiket):
+    for i in range(CONST_VARS.N): 
+        row = Tiket[i]
         csvWriter_Tiket.writerow(row)
 
     # Ketika file sudah habis
@@ -161,7 +166,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_Refund = csv.writer(csvRefund) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (Refund):
+    for i in range(CONST_VARS.N): 
+        row = Refund[i]
         csvWriter_Refund.writerow(row)
 
     # Ketika file sudah habis
@@ -173,7 +179,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_KritikSaran = csv.writer(csvKritikSaran) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (KritikSaran):
+    for i in range(CONST_VARS.N): 
+        row = KritikSaran[i]
         csvWriter_KritikSaran.writerow(row)
 
     # Ketika file sudah habis
@@ -185,7 +192,8 @@ def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     csvWriter_TiketHilang = csv.writer(csvTiketHilang) # Membaca file secara csv
 
     # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
-    for row in (TiketHilang):
+    for i in range(CONST_VARS.N): 
+        row = TiketHilang[i]
         csvWriter_TiketHilang.writerow(row)
 
     # Ketika file sudah habis

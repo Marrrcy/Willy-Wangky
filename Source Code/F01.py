@@ -127,7 +127,6 @@ def load():
     # Ketika file sudah habis
 
     csvUser.close() # Menutup file
-    print(User)
 
     # Database Wahana
     csvWahana = open(FileWahana, 'r') # Membuka file

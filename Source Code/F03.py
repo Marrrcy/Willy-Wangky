@@ -31,7 +31,8 @@ def signup(User):
 
     # Mengisi UsernameList
     i = 1
-    for row in User:
+    for j in  range(CONST_VARS.N):
+        row = User[j]
         UsernameList[i] = row[3]
         i += 1
         if (row == CONST_VARS.MARK_8): 
@@ -61,7 +62,7 @@ def signup(User):
     InfoUser[4] = Password
     InfoUser[5] = "pemain"
     InfoUser[6] = "50000"
-    InfoUser[7] = "False"
+    InfoUser[7] = "FALSE"
     
     # Mendapatkan index pemain baru
     IndexUser = 1
