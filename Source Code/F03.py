@@ -1,83 +1,204 @@
-# Josep Marcello
-# 8 April 2020
-# Program SignUp
-# Untuk menambahkan user ke program WillyWangky
+# Josep Marcello / 16519170
+# 7 April 2020
+# Program save
+# Program ini akan menyimpan perubahan-perubahan yang dilakukan ke file CSV
 
 # TODO
 
 # KAMUS
 
-# definisi fungsi dan prosedur
-# function signup (User : Array[0..CONST_VARS.N-1] of array[0..7] of string) 
-# --> Array[0..CONST_VARS.N-1] of array[0..7] of string, integer
-# fungsi akan mendaftarkan pemain baru lalu menyimpannya di database user
+# Definisi prosedur dan fungsi
+# procedure save(input User : array[1..CONST_VARS.N] of array[1..8] of strings
+                # input Wahana : array[1..CONST_VARS.N] of array[1..5] of strings
+                # input Pembelian : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input Penggunaan : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input Tiket :array[1..CONST_VARS.N] of array[1..3] of strings
+                # input Refund : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input KritikSaran : array[1..CONST_VARS.N] of array[1..4] of strings
+                # input TiketHilang : array[1..CONST_VARS.N] of array[1..4] of strings)
+# I.S: User, Wahana, Pembelian, Penggunaan, Tiket, Refund, KirtikSaran, TiketHilang terdefinisi
+# F.S: User, Wahana, Pembelian, Penggunaan, Tiket, Refund, KirtikSaran, TiketHilang tersimpan di file
 
-# ALGORITMA UTAMA
-# Loading library
-import B01, CONST_VARS
+# ALGORTIMA utama
+# Menyiapkan library yang dibutuhkan
+import csv, CONST_VARS
 
-# Realisasi prosedur dan fungsi
-def signup(User):
+# Realisasi fungsi dan prosedur
+def save(User,Wahana,Pembelian,Penggunaan,Tiket,Refund,KritikSaran,TiketHilang):
     # KAMUS LOKAL
-    # Nama, TanggalLahir, TinggiBadan, Username, Password : string
-    # InfoUser, row : array[0..7] of string
-    # UsernameList : array[0..CONST_VARS.N-1] of string
-    # IndexUser, i : integer
+    # FileUser : SEQFILE of :
+    #   (*) : csvUser : array[0..7] of string
+    #   (1) : CONST_VARS.MARK_8
 
-    # ALGORITMA FUNGSI
-    # Inisialisasi dictionary
-    InfoUser = [' ' for j in range(8)]
-    UsernameList = [' ' for j in range(CONST_VARS.N)]
+    # FileWahana : SEQFILE of :
+    #   (*) : csvWahana : array[0..4] of string
+    #   (1) : CONST_VARS.MARK_5
 
-    # Mengisi UsernameList
-    i = 1
-    for j in  range(CONST_VARS.N):
-        row = User[j]
-        UsernameList[i] = row[3]
-        i += 1
-        if (row == CONST_VARS.MARK_8): 
-            break
-
-    # Menerima informasi pengguna
-    Nama = input("Masukkan nama pemain: ")
-    TanggalLahir = input("Masukkan tanggal lahir pemain (DD/MM/YYYY): ")
-    TinggiBadan = input("Masukkan tinggi badan pemain (dalam cm): ")
-    Username = input("Masukkan username pemain: ")
-
-    # Memeriksa username sudah digunakan atau belum
-    while(Username in UsernameList):
-        # Jika username sudah digunakan
-        print("Username yang anda masukkan sudah terdaftarkan. Silakan pilih username lain.")
-        Username = input("Masukkan username pemain: ")
-    # Username tidak ada di UsernameList
-
-    Password = input("Masukkan password pemain: ")
-    Password = B01.hash(Password) # hashing password
-
-    # Menambahkan data pengguna baru ke InfoUser
-    InfoUser[0] = Nama
-    InfoUser[1] = TanggalLahir
-    InfoUser[2] = TinggiBadan
-    InfoUser[3] = Username
-    InfoUser[4] = Password
-    InfoUser[5] = "pemain"
-    InfoUser[6] = "50000"
-    InfoUser[7] = "FALSE"
+    # FilePembelian : SEQFILE of :
+    #   (*) : csvPembelian : array[0..3] of string
+    #   (1) : CONST_VARS.MARK_4
     
-    # Mendapatkan index pemain baru
-    IndexUser = 1
-    row = User[IndexUser] # First element
-    
-    while (row != CONST_VARS.MARK_8):
-        IndexUser += 1
-        row = User[IndexUser] # Next element
-    
-    # row == CONST_VARS.MARK_8
-    
-    # Menambahkan InfoUser ke User (database user)
-    User[IndexUser] = InfoUser
+    # FilePenggunaan : SEQFILE of :
+    #   (*) : csvPenggunaan : array[0..3] of string
+    #   (1) : CONST_VARS.MARK_4
 
-    # Pesan konfirmasi pengguna sudah berhasil didaftarkan
-    print("Pengguna baru sudah didaftarkan! Selamat datang {} dan selamat bermain!".format(Nama))
+    # FileTiket : SEQFILE of :
+    #   (*) : csvTiket : array[0..2] of string
+    #   (1) : CONST_VARS.MARK_3
+
+    # FileRefund : SEQFILE of :
+    #   (*) : csvRefund : array[0..3] of string
+    #   (1) : CONST_VARS.MARK_4
+
+    # FileKritikSaran : SEQFILE of :
+    #   (*) : csvKritikSaran : array[0..3] of string
+    #   (1) : CONST_VARS.MARK_4
+
+    # FileTiketHilang : SEQFILE of :
+    #   (*) : csvTiketHilang : array[0..3] of string
+    #   (1) : CONST_VARS.MARK_4
+
+    # csvWriter_User : array[1..CONST_VARS.N] of array[1..8] of strings
+    # csvWriter_Wahana : array[1..CONST_VARS.N] of array[1..5] of strings
+    # csvWriter_Pembelian : array[1..CONST_VARS.N] of array[1..4] of strings
+    # csvWriter_Penggunaan : array[1..CONST_VARS.N] of array[1..4] of strings
+    # csvWriter_Tiket :array[1..CONST_VARS.N] of array[1..3] of strings
+    # csvWriter_Refund : array[1..CONST_VARS.N] of array[1..4] of strings
+    # csvWriter_KritikSaran : array[1..CONST_VARS.N] of array[1..4] of strings
+    # csvWriter_TiketHilang : array[1..CONST_VARS.N] of array[1..4] of strings
+
+    # ALGORITMA fungsi
+
+    # Menerima nama file
+    FileUser = input("Masukkan nama File User (default: user): ")
+    # Menambahkan path ke file csv
+    FileUser = CONST_VARS.PATH_TO_DB + FileUser
     
-    return User,IndexUser
+    FileWahana = input("Masukkan nama File Daftar Wahana (default: wahana): ")
+    FileWahana = CONST_VARS.PATH_TO_DB + FileWahana
+
+    FilePembelian = input("Masukkan nama File Pembelian Tiket (default: pembelian): ")
+    FilePembelian = CONST_VARS.PATH_TO_DB + FilePembelian
+
+    FilePenggunaan = input("Masukkan nama File Penggunaan Tiket (default: penggunaan): ")
+    FilePenggunaan = CONST_VARS.PATH_TO_DB + FilePenggunaan
+
+    FileTiket = input("Masukkan nama File Kepemilikan Tiket (default: tiket): ")
+    FileTiket = CONST_VARS.PATH_TO_DB + FileTiket
+
+    FileRefund = input("Masukkan nama File Refund Tiket (default: refund): ")
+    FileRefund = CONST_VARS.PATH_TO_DB + FileRefund
+
+    FileKritikSaran = input("Masukkan nama File Kritik dan Saran (default: kritiksaran): ")
+    FileKritikSaran = CONST_VARS.PATH_TO_DB + FileKritikSaran
+
+    FileTiketHilang = input("Masukkan nama File Kehilangan Tiket (default: tikethilang): ")
+    FileTiketHilang = CONST_VARS.PATH_TO_DB + FileTiketHilang
+    
+    # Menyimpan database ke file
+    # Databaser User
+    csvUser = open(FileUser, 'w') # Membuka file
+    csvWriter_User = csv.writer(csvUser) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = User[i] 
+        csvWriter_User.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvUser.close() # Menutup file
+
+    # Database Wahana
+    csvWahana = open(FileWahana, 'w') # Membuka file
+    csvWriter_Wahana = csv.writer(csvWahana) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = Wahana[i]
+        csvWriter_Wahana.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvWahana.close() # Menutup file
+
+    # Database Pembelian
+    csvPembelian = open(FilePembelian, 'w') # Membuka file
+    csvWriter_Pembelian = csv.writer(csvPembelian) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = Pembelian[i]
+        csvWriter_Pembelian.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvPembelian.close() # Menutup file
+    
+    # Database Penggunaan
+    csvPenggunaan = open(FilePenggunaan, 'w') # Membuka file
+    csvWriter_Penggunaan = csv.writer(csvPenggunaan) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = Penggunaan[i]
+        csvWriter_Penggunaan.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvPenggunaan.close() # Menutup file
+
+    # Database Tiket
+    csvTiket = open(FileTiket, 'w') # Membuka file
+    csvWriter_Tiket = csv.writer(csvTiket) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = Tiket[i]
+        csvWriter_Tiket.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvTiket.close() # Menutup file
+
+    # Database Refund
+    csvRefund = open(FileRefund, 'w') # Membuka file
+    csvWriter_Refund = csv.writer(csvRefund) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = Refund[i]
+        csvWriter_Refund.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvRefund.close() # Menutup file
+
+    # Database KritikSaran
+    csvKritikSaran = open(FileKritikSaran, 'w') # Membuka file
+    csvWriter_KritikSaran = csv.writer(csvKritikSaran) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = KritikSaran[i]
+        csvWriter_KritikSaran.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvKritikSaran.close() # Menutup file
+
+    # Database TiketHilang
+    csvTiketHilang = open(FileTiketHilang, 'w') # Membuka file
+    csvWriter_TiketHilang = csv.writer(csvTiketHilang) # Membaca file secara csv
+
+    # Memasukkan elemen per elemen dari database ke file dengan 1 baris per elemen
+    for i in range(CONST_VARS.N): 
+        row = TiketHilang[i]
+        csvWriter_TiketHilang.writerow(row)
+
+    # Ketika file sudah habis
+
+    csvTiketHilang.close() # Menutup file
+
+    # Pesan konfirmasi file-file telah disave
+    print("Semua file telah disimpan.")

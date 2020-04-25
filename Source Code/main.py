@@ -4,8 +4,6 @@
 # Main program dan interface dengan pengguna
 
 # TODO
-# Komentar
-# Aksi == best_wahana
 
 # KAMUS
 
@@ -26,7 +24,7 @@
 # ALGORITMA
 # load library
 import CONST_VARS
-import B02,B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F14,F15,F16
+import B02,B03,B04,F01,F02,F03,F04,F05,F06,F07,F08,F10,F11,F12,F13,F14,F15,F16
 
 # Inisialisasi variabel
 # Menandakan belum loading jika false
@@ -38,11 +36,31 @@ Sudo = False
 # Mengisi InfoUser
 InfoUser = ["" for i in range(8)]
 
+# Login dan load pertama
+print("Apa yang mau kamu lakukan?\n$ load")
+# Meload file untuk pertama kali
+DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang = F01.load()
+# Menandakan sudah loading
+Loaded = True
+
+# Login untuk pertama kali 
+print("Apa yang mau kamu lakukan?\n$ login")
+IndexUser = F02.login(DatabaseUser)
+InfoUser = DatabaseUser[IndexUser]
+LoggedIn = True
+
+# Memeriksa apakah admin yang login atau bukan
+
+if (InfoUser[5] == "admin"): # Yang login adalah admin
+    Sudo = True
+else: # Yang login adalah pemain
+    Sudo = False
 
 # Agar program terus berjalan
 while (True):
-
+    
     # Menerima input apa yang mau dilakukan user
+    # Menu utama program
     Aksi = input("Apa yang mau kamu lakukan?\n$ ")
 
     # me-load file
@@ -64,7 +82,7 @@ while (True):
             print("Load file yang dibutuhkan terlebih dahulu dengan perintah 'load' (tanpa kutip)!")
         else: # File sudah diload
             if (Aksi == "login"):
-                IndexUser = F04.login(DatabaseUser)
+                IndexUser = F02.login(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
                 LoggedIn = True
 
@@ -76,7 +94,7 @@ while (True):
 
             # save/menyimpan database
             elif (Aksi == "save"):
-                F02.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
+                F03.save(DatabaseUser,DatabaseWahana,DatabasePembelian,DatabasePenggunaan,DatabaseTiket,DatabaseRefund,DatabaseKritikSaran,DatabaseTiketHilang)
             
             # Mencari wahana
             elif (Aksi == "cari"):
@@ -100,7 +118,7 @@ while (True):
         elif (Sudo and LoggedIn and Loaded): # Jika yang mengakses adalah admin dan file sudah diload
             # Mendaftarkan pemain baru
             if (Aksi == "signup"):
-                DatabaseUser, IndexUser = F03.signup(DatabaseUser)
+                DatabaseUser, IndexUser = F04.signup(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
             
             # Mencari pemain
@@ -117,7 +135,7 @@ while (True):
 
             # Menambahkan saldo user (topup)
             elif (Aksi == "topup"):
-                InfoUser = F13.topup(InfoUser)
+                DatabaseUser = F13.topup(DatabaseUser)
 
             # Melihat riwayat penggunaan wahana
             elif (Aksi == "riwayat_wahana"):

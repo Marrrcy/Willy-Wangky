@@ -17,7 +17,7 @@
 # ) 
 
 # ALGORITMA
-import F02
+import F03
 
 def exit(dbU, dbW, dbPem, dbPeng, dbT, dbR, dbK, dbTH, loaded):
     # KAMUS LOKAL
@@ -28,7 +28,7 @@ def exit(dbU, dbW, dbPem, dbPeng, dbT, dbR, dbK, dbTH, loaded):
         saveyn = input("Ingin Menyimpan file (y/n)? ")
 
         if (saveyn == 'y' and loaded):
-            F02.save(dbU, dbW, dbPem, dbPeng, dbT, dbR, dbK, dbTH)
+            F03.save(dbU, dbW, dbPem, dbPeng, dbT, dbR, dbK, dbTH)
     
     print("Sedang keluar dari program...")
     print("Sampai bertemu nanti!")

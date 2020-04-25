@@ -4,7 +4,6 @@
 # Program untuk meng-hash password (dan salt) serta mencocokan password sebenarnya dengan input
 
 # TODO
-# bikin algoritma hashing sendiri?
 
 # KAMUS
 # function hash(Password : string) --> string
