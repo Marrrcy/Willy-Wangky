@@ -54,7 +54,7 @@ def cari(Wahana):
 	# Mencari wahana sesuai dengan persyaratan	
 	found=0	
 	print("Hasil pencarian: ")
-	for i in (CONST_VARS.N):
+	for i in range(CONST_VARS.N):
 		if Umur==Wahana[i][3] and Tinggi==Wahana[i][4]:
 			print(Wahana[i][0],"|",Wahana[i][1],"|",Wahana[i][2])
 			found+=1

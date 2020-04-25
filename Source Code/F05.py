@@ -21,7 +21,7 @@ def cari_pemain (User):
 	
 	# Mencari informasi
 	found = False
-	for i in (CONST_VARS.N):
+	for i in range(CONST_VARS.N):
 		if Users == User[i][3]:
 			found = True
 			print ("Nama Pemain:",User[i][0])

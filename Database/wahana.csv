@@ -2,7 +2,7 @@ IdWahana,NamaWahana,HargaTiket,BatasanUmur,BatasanTinggi
 AAA001,Aaaaaaaa,5000,semua umur,tanpa batasan
 AAA002,Yey,8000,dewasa,>=170 cm
 AAA003,Rolling Thunder,20000,dewasa,>=170 cm
--,-,-,-,-
+AAA004,pletak,0,semua umur,tanpa batasan
 -,-,-,-,-
 -,-,-,-,-
 -,-,-,-,-

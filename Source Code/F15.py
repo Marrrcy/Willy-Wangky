@@ -20,11 +20,11 @@ def tiket_pemain (KepemilikanTiket,Wahana):
 	
 	# Menampilkan informasi tiket
 	print("Riwayat:")
-	for i in (CONST_VARS.N):
+	for i in range(CONST_VARS.N):
 		if Users == KepemilikanTiket[i][0]:
 			Id = KepemilikanTiket[i][1]
 			Jumlah = KepemilikanTiket[i][2]
-			for j in (CONST_VARS.N):
-				if Id==Wahana[j][0]:
+			for j in range(CONST_VARS.N):
+				if Id==Wahana[j][0] and Jumlah != "0":
 					Nama = Wahana[j][1]
 					print((Id),"\t|\t",(Nama),"\t|\t",(Jumlah))

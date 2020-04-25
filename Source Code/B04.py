@@ -27,7 +27,7 @@ def tiket_hilang(KepemilikanTiket,TiketHilang):
 	for i in range(CONST_VARS.N):
 		if Users == KepemilikanTiket[i][0]:
 			if Id == KepemilikanTiket[i][1]:
-				if Hilang <= int(i[2]):
+				if Hilang <= int(KepemilikanTiket[i][2]):
 					# Menambah database Tiket Hilang
 					# Inisialisasi dictionary
 					df = ['' for j in range(4)]
