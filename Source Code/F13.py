@@ -4,7 +4,6 @@
 # Program akan menambah saldo user
 
 import CONST_VARS
-from panjangArray import panjangArray
 
 def topup (DatabaseUser):
     #Menerima informasi user

@@ -8,7 +8,6 @@
 
 # Definisi fungsi
 import CONST_VARS
-from panjangArray import panjangArray
 
 def main (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabasePenggunaan):
     # Kamus

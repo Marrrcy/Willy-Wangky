@@ -3,7 +3,6 @@
 # Program Menggunakan Tiket
 # Program akan menambah saldo dari pengguna dengan merefund tiket yang ada
 import CONST_VARS
-from panjangArray import panjangArray
 
 def refund (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana, DatabaseRefund):
     #Menerima informasi user
