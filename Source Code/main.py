@@ -36,6 +36,17 @@ Sudo = False
 # Mengisi InfoUser
 InfoUser = ["" for i in range(8)]
 
+# Pesan untuk menyambut user
+print("Selamat datang di")
+print(" _    _ _ _ _         _    _                   _          ")
+print("| |  | (_) | |       | |  | |                 | |         ")
+print("| |  | |_| | |_   _  | |  | | __ _ _ __   __ _| | ___   _ ")
+print("| |/\| | | | | | | | | |/\| |/ _` | '_ \ / _` | |/ / | | |")
+print("\  /\  / | | | |_| | \  /\  / (_| | | | | (_| |   <| |_| |")
+print(" \/  \/|_|_|_|\__, |  \/  \/ \__,_|_| |_|\__, |_|\_\ \_, |")
+print("               __/ |                      __/ |      __/ |")
+print("              |___/                      |___/      |___/ ")
+
 # Login dan load pertama
 print("Apa yang mau kamu lakukan?\n$ load")
 # Meload file untuk pertama kali

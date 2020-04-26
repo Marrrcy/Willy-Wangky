@@ -1,9 +1,9 @@
 IdWahana,NamaWahana,HargaTiket,BatasanUmur,BatasanTinggi
-AAA001,Aaaaaaaa,5000,semua umur,tanpa batasan
-AAA002,Yey,8000,dewasa,>=170 cm
+AAA001,Aaaaaaaa,15000,semua umur,tanpa batasan
+AAA002,Tightrope,18000,dewasa,>=170 cm
 AAA003,Rolling Thunder,20000,dewasa,>=170 cm
-AAA004,pletak,0,semua umur,tanpa batasan
--,-,-,-,-
+AAA004,Spooky Scary Sekeleton,15000,semua umur,tanpa batasan
+AAA005,Terjun Bebas,50000,anak-anak,tanpa batasan
 -,-,-,-,-
 -,-,-,-,-
 -,-,-,-,-

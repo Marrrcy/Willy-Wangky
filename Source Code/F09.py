@@ -67,6 +67,7 @@ def refund (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana, DatabaseRef
         return InfoUser, DatabaseTiket,DatabasePembelian, DatabaseRefund
 
     else :
+        print("Anda tidak memiliki tiket terkait.")
         return InfoUser, DatabaseTiket,DatabasePembelian, DatabaseRefund
 
             

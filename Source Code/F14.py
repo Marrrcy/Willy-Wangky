@@ -22,4 +22,4 @@ def lihatriwayatwahana (DatabasePenggunaan):
 
 
     for i in range(idx):
-        print(Id_DatabaseWahana_ygsama[i][1] + '\t|\t' + Id_DatabaseWahana_ygsama[i][0] + '\t|\t' + Id_DatabaseWahana_ygsama[i][3])
+        print(Id_DatabaseWahana_ygsama[i][1] + '\t|\t' + Id_DatabaseWahana_ygsama[i][0] + '\t|\t' + str(Id_DatabaseWahana_ygsama[i][3]))

@@ -27,10 +27,14 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
     Umur = int(TanggalPembelian[6:10:])-int(InfoUser[1][6:10:])
     Tinggi = 170 if (wahana[4] == ">=170 cm") else 0
     BatasUmur = 0 if (wahana[3] == "semua umur") else 17
-    if InfoUser[7] == "False" : #status golden account = "FALSE"
+    if InfoUser[7] == "FALSE" : #status golden account = "FALSE"
         if (Umur >= BatasUmur and int(InfoUser[2]) >= Tinggi and  int(InfoUser[6]) - int(wahana[2]) * JumlahTiket >= 0):
             InfoUser[6] = str(int(InfoUser[6]) - int(wahana[2]) * JumlahTiket)
             print("Selamat bersenang-senang di {}.".format(wahana[1]))
+        
+        elif (wahana[3] == "anak-anak" and Umur >= 17):
+            print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
+            return InfoUser,DatabaseTiket,DatabasePembelian
 
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
@@ -40,6 +44,11 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
         if (Umur >= BatasUmur and int(InfoUser[2]) >= Tinggi and  int(int(InfoUser[6]) - 0.5 * int(wahana[2]) * JumlahTiket >= 0)):
             print("Selamat bersenang-senang di {}.".format(wahana[1]))
             InfoUser[6] = int(int(InfoUser[6]) - int(0.5 * int(wahana[2])) * JumlahTiket)
+
+        elif (wahana[3] == "anak-anak" and Umur >= 17):
+            print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
+            return InfoUser,DatabaseTiket,DatabasePembelian
+
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
             return InfoUser,DatabaseTiket,DatabasePembelian
