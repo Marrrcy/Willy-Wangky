@@ -134,7 +134,13 @@ while (True):
             if (Aksi == "signup"):
                 DatabaseUser, IndexUser = F04.signup(DatabaseUser)
                 InfoUser = DatabaseUser[IndexUser]
-            
+
+                 # Memeriksa apakah admin yang login atau bukan
+                if (InfoUser[5] == "admin"): # Yang login adalah admin
+                    Sudo = True
+                else: # Yang login adalah pemain
+                    Sudo = False           
+
             # Mencari pemain
             elif (Aksi == "cari_pemain"):
                 F05.cari_pemain(DatabaseUser)
