@@ -36,6 +36,10 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
             return InfoUser,DatabaseTiket,DatabasePembelian
 
+        elif (int(InfoUser[6]) - int(wahana[2])*JumlahTiket < 0):
+            print("Saldo Anda tidak cukup.\nSilakan mengisi saldo Anda.")
+            return InfoUser, DatabaseTiket, DatabasePembelian
+
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
             return InfoUser,DatabaseTiket,DatabasePembelian
@@ -48,6 +52,10 @@ def beli_tiket (InfoUser,DatabaseTiket,DatabasePembelian, DatabaseWahana):
         elif (wahana[3] == "anak-anak" and Umur >= 17):
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")
             return InfoUser,DatabaseTiket,DatabasePembelian
+
+        elif (int(InfoUser) - 0.5*int(wahana[2])*JumlahTiket < 0):
+            print("Saldo Anda tidak cukup.\nSilakan mengisi saldo Anda.")
+            return InfoUser, DatabaseTiket, DatabasePembelian
 
         else :
             print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini.\nSilakan menggunakan wahana lain yang tersedia.")

@@ -40,9 +40,9 @@ def main (InfoUser,DatabaseTiket,DatabasePembelian,DatabaseWahana,DatabasePenggu
             
         IndexTiket += 1
 
-    if found == False :
-        print("Tiket Anda tidak valid dalam sistem kami atau wahana tidak ditemukan")
-        return InfoUser,DatabaseTiket,DatabasePenggunaan, DatabaseWahana
+    # if found == False :
+        # print("Tiket Anda tidak valid dalam sistem kami atau wahana tidak ditemukan")
+        # return InfoUser,DatabaseTiket,DatabasePenggunaan, DatabaseWahana
     
     # Mendapatkan index untuk entri baru di database tiket
     IndexTiket = 1
