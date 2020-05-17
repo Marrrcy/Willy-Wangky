@@ -31,3 +31,6 @@ def insertion_sort(matrix,p):
             matrix[j+1] = pivot
     
     return matrix
+
+asd = [1,2,3,4,5]
+asd = insertion_sort(asd)
